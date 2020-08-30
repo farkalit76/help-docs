@@ -1,0 +1,15 @@
+95-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fjourney%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+68-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Frta%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+52-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fjourney%2Ftypes&id=ae.gov.sdg%3Apaperless&resolved=false#
+37-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fkhda%2Fpsc%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+36-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fjourney%2Fmodel&id=ae.gov.sdg%3Apaperless&resolved=false#
+33-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fdha%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+29-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fgdrfa%2Fservice%2Freports&id=ae.gov.sdg%3Apaperless&resolved=false#
+27-http://10.100.134.116:9010/project/issues?directories=src%2Ftest%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fjourney%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+25-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fdashboard%2Fdriving%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+25-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fawqaf%2Fdonation%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+24-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fairport%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+24-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fawqaf%2Fdonation%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+22-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fdewa%2Fservice&id=ae.gov.sdg%3Apaperless&resolved=false#
+21-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fdha%2Fmodel&id=ae.gov.sdg%3Apaperless&resolved=false#
+20-http://10.100.134.116:9010/project/issues?directories=src%2Fmain%2Fjava%2Fae%2Fgov%2Fsdg%2Fpaperless%2Fservices%2Fentity%2Fdld%2Fservice%2Ftitledeed&id=ae.gov.sdg%3Apaperless&resolved=false#

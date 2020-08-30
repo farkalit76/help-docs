@@ -1,0 +1,92 @@
+
+WSO2 Integration Studio ver. 7.0.2 With Eclipse ver-3.7.1
+Start:D:\Farkalit\Softwares\WSO2IntegrationStudio\IntegrationStudio.exe
+========================================================================
+Open URL http://www.crcind.com/csp/samples/SOAP.Demo.cls
+For request and Response:
+========================================================================
+Test Case  One
+----------------------------------------------------------------------
+Input Payload:
+<ArithmaticOperation>
+<Operation>Add</Operation>
+<Arg1>10</Arg1>
+<Arg2>25</Arg2>
+</ArithmaticOperation>
+
+Properties:
+Property Scope → Transport
+Property Name → Content-Type
+Property Value → application/xml  -->text/xml
+
+Assertion:
+AssertEquals-->The result value is not equal as expected value 35
+Response:
+	<?xml version="1.0" encoding="UTF-8" ?>
+	<SOAP-ENV:Envelope xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:s='http://www.w3.org/2001/XMLSchema'>
+	<SOAP-ENV:Body>
+	<AddIntegerResponse xmlns ="http://tempuri.org">
+	<AddIntegerResult>35</AddIntegerResult>
+	</AddIntegerResponse>
+	</SOAP-ENV:Body>
+	</SOAP-ENV:Envelope>
+
+--->
+
+<assertEquals>
+<actual>$body</actual>
+<expected><![CDATA[<SOAP-ENV:Envelope xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/' xmlns:xsi='http://www.w3.org/2001/XMLSchema/XMLSchema-instance' xmlns:s='http://www.w3.org/2001/XMLSchema' >&#13;
+<SOAP-ENV:Body>&#13;
+<AddIntegerResponse xmlns ="http://tempuri.org">&#13;
+<AddIntegerResult>35</AddIntegerResult>&#13;
+</AddIntegerResponse>&#13;
+</SOAP-ENV:Body>&#13;
+</SOAP-ENV:Envelope>]]>
+</expected>
+<message>The result value is not equal as expected value 35</message>
+</assertEquals>
+
+<assertEquals>
+<actual>$body</actual>
+<expected><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV='http://schemas.xmlsoap.org/soap/envelope/' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:s='http://www.w3.org/2001/XMLSchema'>
+<SOAP-ENV:Body>
+<AddIntegerResponse xmlns="http://tempuri.org">
+<AddIntegerResult>35</AddIntegerResult>
+</AddIntegerResponse>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>]]></expected>
+<message>Actual value is not equals to the expected value 35</message>
+</assertEquals>
+
+
+
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.w3.org/2001/XMLSchema">
+<SOAP-ENV:Body>
+<AddIntegerResponse xmlns="http://tempuri.org">
+<AddIntegerResult>35</AddIntegerResult>
+</AddIntegerResponse>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+
+---Run Unit Tests:
+D:\Farkalit\Softwares\WSO2IntegrationStudio\runtime\microesb\bin\micro-integrator.bat
+
+
+Another Divide PayLoad:
+	<ArithmaticOperation>
+	<Operation>Divide</Operation>
+	<Arg1>10</Arg1>
+	<Arg2>2</Arg2>
+	</ArithmaticOperation>
+
+Response:
+<?xml version="1.0" encoding="UTF-8" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:s="http://www.w3.org/2001/XMLSchema">
+<SOAP-ENV:Body>
+<DivideIntegerResponse xmlns="http://tempuri.org">
+<DivideIntegerResult>5</DivideIntegerResult>
+</DivideIntegerResponse>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

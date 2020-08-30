@@ -1,0 +1,87 @@
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>git merge master
+Updating 38d7b44..70cafaa
+Fast-forward
+ .../cache/service/json/RedisJsonCacheService.java  |   3 +-
+ .../plaintext/RedisPlainTextCacheService.java      |   3 +-
+ .../platform/common/PaperlessResourceLoader.java   |   2 +-
+ .../platform/common/PlatformConstants.java         |   4 +-
+ .../platform/common/RestTemplateConfig.java        |  58 ++++++++++
+ .../platform/common/controller/BaseController.java |  20 +++-
+ .../common/service/generic/IRestService.java       |  25 ++++-
+ .../service/generic/JourneyExecutionContext.java   |  22 ++++
+ .../service/generic/RestBasicAuthService.java      |  25 ++++-
+ .../service/generic/RestBearerAuthService.java     |  33 +++++-
+ .../platform/exceptions/RestExceptionHandler.java  |  14 +--
+ .../RestTemplateResponseErrorHandler.java          |   2 -
+ .../security/AuthenticationInterceptor.java        |   7 +-
+ .../tracing/HttpRequestHeadersAppender.java        |  28 +++++
+ .../platform/tracing/LogHeadersAppenderHttp.java   |  49 ---------
+ .../platform/tracing/LogTracingFilter.java         |  18 ++--
+ .../platform/tracing/LoggingInterceptor.java       |   6 +-
+ .../tracing/events/EventsExecutorService.java      |  28 +++--
+ .../gov/sdg/paperless/platform/util/JsonUtil.java  |  17 ---
+ .../common/config/RestTemplateConfigTest.java      |  54 ++++++++++
+ .../common/controller/BaseControllerTest.java      |  21 +++-
+ .../common/filters/ApplicationFilterTest.java      |  11 ++
+ .../generic/IRestServiceBearerAuthImpl.java        |  42 ++++++++
+ .../common/service/generic/IRestServiceImpl.java   |   6 ++
+ .../service/generic/RestBasicAuthServiceTest.java  |   1 +
+ .../service/generic/RestBearerAuthServiceTest.java |   6 +-
+ .../security/AuthenticationInterceptorTest.java    |  38 +++++++
+ .../security/GenericAuthTokenCacheTest.java        |  24 +++++
+ .../platform/security/JWTServiceTest.java          |  29 ++---
+ ...st.java => HttpRequestHeadersAppenderTest.java} |  13 ++-
+ .../platform/util/DockerSecretProcessorTest.java   |   2 +-
+ .../sdg/paperless/platform/util/JsonUtilTest.java  | 120 +++++++++++++--------
+ .../resources/docker-secrets/docker-secrets.json   |   0
+ 33 files changed, 555 insertions(+), 176 deletions(-)
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/platform/common/RestTemplateConfig.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/platform/tracing/HttpRequestHeadersAppender.java
+ delete mode 100644 src/main/java/ae/gov/sdg/paperless/platform/tracing/LogHeadersAppenderHttp.java
+ create mode 100644 src/test/java/ae/gov/sdg/paperless/platform/common/config/RestTemplateConfigTest.java
+ rename src/test/java/ae/gov/sdg/paperless/platform/tracing/{LogHeadersAppenderHttpTest.java => HttpRequestHeadersAppenderTest.java} (76%)
+ create mode 100644 src/test/resources/docker-secrets/docker-secrets.jsonD:\Farkalit\projects\dev\sdgworkspace\paperless-platform>
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>git merge master
+Updating 38d7b44..70cafaa
+Fast-forward
+ .../cache/service/json/RedisJsonCacheService.java  |   3 +-
+ .../plaintext/RedisPlainTextCacheService.java      |   3 +-
+ .../platform/common/PaperlessResourceLoader.java   |   2 +-
+ .../platform/common/PlatformConstants.java         |   4 +-
+ .../platform/common/RestTemplateConfig.java        |  58 ++++++++++
+ .../platform/common/controller/BaseController.java |  20 +++-
+ .../common/service/generic/IRestService.java       |  25 ++++-
+ .../service/generic/JourneyExecutionContext.java   |  22 ++++
+ .../service/generic/RestBasicAuthService.java      |  25 ++++-
+ .../service/generic/RestBearerAuthService.java     |  33 +++++-
+ .../platform/exceptions/RestExceptionHandler.java  |  14 +--
+ .../RestTemplateResponseErrorHandler.java          |   2 -
+ .../security/AuthenticationInterceptor.java        |   7 +-
+ .../tracing/HttpRequestHeadersAppender.java        |  28 +++++
+ .../platform/tracing/LogHeadersAppenderHttp.java   |  49 ---------
+ .../platform/tracing/LogTracingFilter.java         |  18 ++--
+ .../platform/tracing/LoggingInterceptor.java       |   6 +-
+ .../tracing/events/EventsExecutorService.java      |  28 +++--
+ .../gov/sdg/paperless/platform/util/JsonUtil.java  |  17 ---
+ .../common/config/RestTemplateConfigTest.java      |  54 ++++++++++
+ .../common/controller/BaseControllerTest.java      |  21 +++-
+ .../common/filters/ApplicationFilterTest.java      |  11 ++
+ .../generic/IRestServiceBearerAuthImpl.java        |  42 ++++++++
+ .../common/service/generic/IRestServiceImpl.java   |   6 ++
+ .../service/generic/RestBasicAuthServiceTest.java  |   1 +
+ .../service/generic/RestBearerAuthServiceTest.java |   6 +-
+ .../security/AuthenticationInterceptorTest.java    |  38 +++++++
+ .../security/GenericAuthTokenCacheTest.java        |  24 +++++
+ .../platform/security/JWTServiceTest.java          |  29 ++---
+ ...st.java => HttpRequestHeadersAppenderTest.java} |  13 ++-
+ .../platform/util/DockerSecretProcessorTest.java   |   2 +-
+ .../sdg/paperless/platform/util/JsonUtilTest.java  | 120 +++++++++++++--------
+ .../resources/docker-secrets/docker-secrets.json   |   0
+ 33 files changed, 555 insertions(+), 176 deletions(-)
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/platform/common/RestTemplateConfig.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/platform/tracing/HttpRequestHeadersAppender.java
+ delete mode 100644 src/main/java/ae/gov/sdg/paperless/platform/tracing/LogHeadersAppenderHttp.java
+ create mode 100644 src/test/java/ae/gov/sdg/paperless/platform/common/config/RestTemplateConfigTest.java
+ rename src/test/java/ae/gov/sdg/paperless/platform/tracing/{LogHeadersAppenderHttpTest.java => HttpRequestHeadersAppenderTest.java} (76%)
+ create mode 100644 src/test/resources/docker-secrets/docker-secrets.json

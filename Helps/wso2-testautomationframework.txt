@@ -1,0 +1,13 @@
+WSO2 Test Automation Framework TAF
+=========================================
+Maven Dependencies: 
+
+https://mvnrepository.com/artifact/org.wso2.carbon.automation
+
+The test-automation-framework module can be found inside the directory. It contains four major modules which are used for the integration test implementation.
+
+org.wso2.carbon.automation.api - Provides the Admin Service client class implementation.
+org.wso2.carbon.automation.engine - Provides the core functionality of the test framework.
+org.wso2.carbon.automation.tools.jmeter - Provides the jmeter test executor.
+org.wso2.carbon.automation.utils - Provides various utilities for the test classes.
+

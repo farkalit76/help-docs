@@ -1,0 +1,177 @@
+
+---------To get Authorization  Token---------
+=============================================
+URL:POST: https://ids.qa.dubai.gov.ae/oauth2/token?grant_type=client_credentials&scope=openid
+Params:
+grant_type:client_credentials
+scope:openid
+Body:x-www-form-encoded
+Authorization:
+Type: BasicAuth
+UserName:6g85qChuuMAjsKWBa7f3vbQtTAIa
+Password:VmOtXZ7RHjjyj6cWKWWs314tmWka
+
+
+
+-----Hospital---->
+add in journeyservice.yml---:Hospital: "GUEST, mPay, DubaiID_VERIFIED, DubaiID_UNVERIFIED, SOP1, SOP2, SOP3"
+add in JourneyType.java--:Hello("hello"),              Hospital("hospital");
+add in LOGIN_SOURCE --:ADMIN("admin");
+add in UserinfoServiceImpl.java---:
+                             else if(JWTUtil.getLoginSource(dubaiNowJWT).equals(LOGIN_SOURCE.ADMIN)) {   
+           return restTemplate.exchange(requestEntity, UserInfo.class).getBody();
+       }
+
+
+
+
+
+=========================================
+2. route-config-hello-json
+{
+	"initialScreen": "ae.gov.sdg.paperless.services.entity.hello.service.HelloService"
+}
+
+2-----i18-hello-resources.json
+"hello-template-screen":{
+	  "title": "",
+	  "en":{
+					 "screen.title":"Hello Screen",
+					 "header.title": "Header Sub Title",
+					 "message.title": "Message"
+	  },
+	  "ar":{
+					 "screen.title":"Marhaba",
+					 "header.title": "Sabahal Khair!",
+					 "message.title": "Hasanaaa"
+	  }
+}
+
+3--hello-template-screen.ftl
+<@compress single_line=true>
+{
+    "processId": "",
+    "name": "hello-template-screen",
+    "type": "sequence",
+    "backToExit": true,
+    "screens": [
+        {
+            "processId": "",
+            "title": "${labels["screen.title"]!"???screen.title????"}",
+            "name": "hello-template-screen",
+            "type": "screen",
+            "components": [
+                {
+                    "type": "section_header",
+                    "title": "${labels["header.title"]!"???header.title????"}",
+                    "name": "subHeaders"
+                 },
+                 {
+                    "type": "label_value",
+                    "title": "${labels["message.title"]!"???message.title????"}",
+                    "value" : "${hello.message}",
+                   "name": "message"
+                 }
+            ]
+         }
+      ]
+}
+</@compress>
+4. hello-screen-path.json
+{
+	"hello-template-screen" : "hello/"
+}
+
+5. screen-sequence-hello.json
+{
+	"hello-intro-template-screen": {
+		"next": "hello-template-screen"
+	},
+	"hello-template-screen": {
+		"next": "hello-intro-template-screen"
+	}
+}
+
+6. HelloController.java
+package ae.gov.sdg.paperless.services.entity.hospital.controller;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.annotations.Api;
+
+@RestController
+@RequestMapping(path= {"/api/entity/hello", "api/entity/hello/1.0.0"})
+@Api(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+public class HelloController extends BaseController{
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@LoginRequired
+	public ResponseEntity<String> reportScreens(@RequestBody Request request,
+			@ApiIgnore @ApiParam(hidden = true) @RequestAttribute(required = false) UserInfo userInfo,
+			@ApiIgnore @ApiParam(hidden = true) @RequestAttribute(required = false) String dubaiNowAccessToken,
+			@ApiIgnore @ApiParam(hidden = true) @RequestAttribute(required = false) String dubaiNowJWTToken)
+			throws IOException, UserAuthenticationFailedException {
+		log.debug("hello message started...");
+		String screenJson = null;
+		HttpHeaders httpHeaders = httpHeaders();
+		HttpStatus httpStatus = HttpStatus.OK;
+		screenJson = screen(request, userInfo, dubaiNowAccessToken, dubaiNowJWTToken);
+		return new ResponseEntity<String>(screenJson, httpHeaders, httpStatus);
+
+	}
+	
+}
+
+7. HelloService.java--
+@Autowired
+	private ScreenService screenService;
+
+	/**
+	 * 
+	 * @param request
+	 * @param userInfo
+	 * @return String
+	 * @throws IOException
+	 */
+	public String getHelloScreen(LangType lang, Request request, UserInfo userInfo) throws IOException {
+		log.debug("hello service started...");
+		String screenJson = "";
+		Map<String, Object> paramsMap = request.getParams();
+
+		log.error("Empty params map. Details cannot be populated.");
+		paramsMap = new HashMap<String, Object>();
+		HelloModel model = new HelloModel();
+		model.setTitle("first title");
+		paramsMap.put("message", model);
+
+		screenJson = screenService.getAndPopulateScreens("hello-template-screen", paramsMap, lang, "");
+
+		return screenJson;
+	}
+
+8. HelloMmodel.java
+String name, title;
+
+===============================================================190====>
+ <configuration>
+					<excludes>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/airport/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/cache/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/common/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/dha/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/dld/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/dp/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/dpp/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/gdrfa/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/khda/psc/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/mbrhe/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/otp/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/rta/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/journey/bpm/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/journey/model/**</exclude>
+						<exclude>**/ae/gov/sdg/paperless/services/entity/journey/exceptions/**</exclude>
+					</excludes>
+
+				</configuration>

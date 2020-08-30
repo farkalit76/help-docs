@@ -1,0 +1,374 @@
+
+
+
+JUnit with Mockito Test Cases:
+==========================================================================
+
+to resolve: org.mockito.exceptions.misusing.UnnecessaryStubbingException:
+Mockito.lenient().when(environment.getPropertySources()).thenReturn(msources);
+===========================================================================
+Mock @Value Example
+    @Value("${sdg.service.otp.length}")
+    private int otpLength;
+OtpService otpservice = new OtpService();
+ReflectionTestUtils.setField(otpservice, "otpLength", 4);
+==============================================================
+Mock @Autowired
+@Spy
+SmsServiceConfig serviceProperties;
+Then--> doRetun().when(classObj).methodName();
+OR-->Mockito.lenient().doReturn("abcd").when(serviceProperties).getClientid();
+
+=============================================================
+Final class : Cannot Mock of final calss.
+Mocking static Method: cannot mock static method.
+
+Abstract class: Do as below for class --BaseController
+------------------------------------------------------
+	@Test
+	public void test2() {
+		BaseController baseController = Mockito.mock(BaseController.class, Mockito.CALLS_REAL_METHODS);
+		HttpHeaders httpHeaders = baseController.httpHeaders();
+		assertNotNull(httpHeaders);
+	}
+	
+Interface with default Methods:
+============================================================
+public interface IRedisCacheService<T> {
+	default String generateCacheName(final String journeyType, final String... parameter) {
+	}
+}
+Create a new class with implementing that interface
+public class IRedisCacheServiceImpl implements IRedisCacheService<JSONObject>{
+	//implement those default methods here
+	public String generateCacheNameImpl(final String journeyType, final String... parameter) {
+		return generateCacheName(journeyType, parameter);
+	}
+}
+Write Test cases for default methods:
+public class IRedisCacheServiceImplTest {
+	
+	@Test
+	public void testGenerateCacheName() {
+		IRedisCacheServiceImpl redisCache = new IRedisCacheServiceImpl();		
+		String generateCacheName = redisCache.generateCacheNameImpl("dubaipolice", "template");
+		assertEquals("dubaipolice-template", generateCacheName);
+	}
+}
+
+Mocking private Method: Do as below
+-----------------------------------
+sumNums(Integer a , Integer b){
+ return a+b;
+ }
+	@Test
+	public void testsumNums() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		try {
+			AuthenticationInterceptor targetObj = new AuthenticationInterceptor();
+	        
+			Method privateMethod = AuthenticationInterceptor.class.getDeclaredMethod("sumNums", Integer.class, Integer.class);
+			privateMethod.setAccessible(true);
+			int sum =(int)privateMethod.invoke(targetObj, 10,20);
+			System.out.println("returnValue = " + sum);
+			assertTrue(true);
+		} catch (Exception e) {
+			fail("failed..");
+		}		
+	}
+Mock a class with a parameter in constructor
+============================================
+public UserInfoServiceImpl(@Qualifier("restBearerAuthService") final IRestService<BearerAuth> restService) {
+    	this.restService = restService;
+    }
+IRestService mclazz = Mockito.mock(IRestService.class);
+UserInfoServiceImpl userinforService = Mockito.mock(UserInfoServiceImpl.class, withSettings().useConstructor(mclazz));
+This is for :UserInfoServiceImpl(IRestService mclazz){//do something}
+
+Mockito Class Matchers
+====================================================
+	ResponseEntity<String> generateResponseEnt = new ResponseEntity<String>(body, HttpStatus.ACCEPTED);
+	when(restTemplate.exchange(ArgumentMatchers.<org.springframework.http.RequestEntity<GenerateOtpRequest>>any(), ArgumentMatchers.<Class<String>>any())).thenReturn(generateResponseEnt);
+
+AND
+	String response = "{ \"data\": \"value\" }";
+	ResponseEntity<String> respEntity = new ResponseEntity<String>(response, HttpStatus.OK);
+	when(restService.invoke(ArgumentMatchers.<RequestEntity<?>>any(), ArgumentMatchers.<Class<String>>any())).thenReturn(respEntity);
+OR
+	String response = "{ \"data\": \"value\" }";
+	ResponseEntity<String> respEntity = new ResponseEntity<String>(response, HttpStatus.OK);
+	when(restTemplate.exchange(Mockito.anyString(), Mockito.eq(HttpMethod.GET), Mockito.any(), Mockito.eq(String.class))).thenReturn(respEntity);
+
+	@Test
+	public void invokeImpl() {
+		try {
+			String response = "{\"name\":\"usman\", \"address\":\"dubai\", \"age\": 20 }";
+			ResponseEntity<String> respEntity = new ResponseEntity<String>(response, HttpStatus.OK);
+			Mockito.lenient().when(restTemplate.exchange(ArgumentMatchers.<RequestEntity<Pojo>>any(),
+					ArgumentMatchers.<Class<String>>any())).thenReturn(respEntity);
+			ResponseEntity<Pojo> invokeImpl = restservice.invokeImpl(url, new Pojo("usman", "dubai", 10), Pojo.class, HttpMethod.GET);
+			assertNotNull("Response should not be null", invokeImpl.getBody());
+		} catch (Exception e) {
+			assertNotNull("Connection refused", e.getMessage());
+		}
+	}
+	
+	
+
+"The method when(T) in the type Stubber is not applicable for the arguments (void)"
+-------------------------------------------------------------------------------
+//when(handler.handleError(Mockito.eq(ClientHttpResponse.class))).thenThrow(UnknownHttpStatusCodeException.class);
+//when(handler.handleError(ArgumentMatchers.<ClientHttpResponse>any())).thenThrow(UnknownHttpStatusCodeException.class);
+//when(handler.handleError(Mockito.anyObject())).thenThrow(UnknownHttpStatusCodeException.class);
+//Mockito.when(handler.handleError(Mockito.eq(response))).thenThrow(UnknownHttpStatusCodeException.class);
+
+Solution For Mockito Error: "The method when(T) in the type Stubber is not applicable for the arguments (void)"
+@Mock
+DefaultResponseErrorHandler handler;
+Mockito.doThrow(UnknownHttpStatusCodeException.class).when(handler).handleError(Mockito.any(ClientHttpResponse.class));
+
+
+
+Exception Handling:
+==============================================================================
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+	@Test
+	public void test3() {
+		Request request = new Request();
+		BaseController baseController = Mockito.mock(BaseController.class, Mockito.CALLS_REAL_METHODS);
+		Throwable exception = assertThrows(GenericException.class,
+				() -> baseController.genericException(request, new Exception()) );
+		assertEquals(null, exception.getMessage());
+	}
+	
+	
+Void Method Testing
+========================================================
+	public void createEvent(List<UserEventsRequest> traceRequests) {
+        String traceId = MDC.get(LOG_TRACE_ID);
+        String sessionId = MDC.get(LOG_SESSION_ID);
+		traceRequests.forEach(traceRequest -> {
+			convertLongTimeToDate(traceRequest);
+			logRequest(traceRequest, traceId, sessionId);
+		});
+	}
+	
+	@Test
+	public void testInit() {
+		List<UserEventsRequest> traceRequests = new ArrayList<>();
+		UserEventsRequest request = new UserEventsRequest();
+		request.setDeviceTime("11:30");
+		traceRequests.add(request);
+
+		EventsExecutorService eventService = mock(EventsExecutorService.class);
+		doNothing().when(eventService).createEvent(ArgumentMatchers.<List<UserEventsRequest>>any());
+		eventService.createEvent(traceRequests);
+
+		verify(eventService, times(1)).createEvent(traceRequests);
+	}
+	
+	
+Load File Path Testing
+========================================================
+try {
+	JWTUtil.loadCertificateFromCertificateFactory(absolutePath+certificatePath);
+} catch (Exception e) {
+	System.err.println(e.getMessage());
+	assertEquals("Unable to load certificate", e.getMessage());
+}
+
+//private String path = "src//test//resources";
+//private String certificatePath = "cert//dev//ids-jwt-issuer.crt";
+//	@Test
+//	public void testReadInputFile() throws Exception {
+//		ClassLoader classLoader = this.getClass().getClassLoader();
+//		InputStream file = classLoader.getResourceAsStream(path+certificatePath);
+//		assertEquals(1014, file.available());
+//	}
+
+------------------------------------------------------------------------------------	
+	@Mock
+	HttpServletRequest request;	
+OR
+	HttpServletRequest httprequest=  Mockito.mock(MockHttpServletRequest.class);
+	
+	@Test
+	public void testauthenticateDubaiNowService2() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		AuthenticationInterceptor targetObj = new AuthenticationInterceptor();
+		HttpServletRequest httprequest=  new MockHttpServletRequest();
+		try {
+			Map<String, String> headers = new HashMap<>();
+			headers.put(null, "HTTP/1.1 200 OK");
+			headers.put("Content-Type", "text/html");
+			headers.put(targetObj.HEADER_AUTHORIZATION_SERVICE, "test:dev");
+			// create an Enumeration over the header keys
+			Iterator<String> iterator = headers.keySet().iterator();
+			Enumeration headerNames = new Enumeration<String>() {
+			    @Override
+			    public boolean hasMoreElements() {
+			        return iterator.hasNext();
+			    }
+
+			    @Override
+			    public String nextElement() {
+			        return iterator.next();
+			    }
+			};
+			when(httprequest.getHeaderNames()).thenReturn(headerNames);
+			//
+			
+			
+			httprequest.setAttribute(targetObj.HEADER_AUTHORIZATION_SERVICE, "test:dev");
+	        
+			Method privateMethod = AuthenticationInterceptor.class.getDeclaredMethod("authenticateDubaiNowService", HttpServletRequest.class);
+			privateMethod.setAccessible(true);
+			privateMethod.invoke(targetObj, httprequest);
+			System.out.println("runningggnnngn.... = ");
+			assertTrue(true);
+		} catch (Exception e) {
+			fail("failed.."+e.getMessage());
+		}		
+	}
+}		
+
+	@Test
+	public void testIsVerifiedUserCheckRequired() {
+		AuthenticationInterceptor interceptor = new AuthenticationInterceptor();
+		HttpServletRequest httpRequest = new MockHttpServletRequest();
+		httpRequest.setAttribute("journey", "RtaService");
+		try {
+			UserInfo userinfo = new UserInfo();
+			userinfo.setUserType("dev");
+			Class[] argClasses = {HttpServletRequest.class, UserInfo.class };
+	        Object[] argObjects = {request, userinfo };
+	        
+			Method isVerifiedMethod = AuthenticationInterceptor.class.getDeclaredMethod("isVerifiedUserCheckRequired", HttpServletRequest.class, UserInfo.class);
+			isVerifiedMethod.setAccessible(true);
+			boolean isverfied= (Boolean)isVerifiedMethod.invoke(interceptor, httpRequest, userinfo);
+			System.out.println("isverfied = " + isverfied);
+			assertTrue(true);
+		} catch (Exception e) {
+			fail("failed..");
+		}	
+	}
+	
+-----------power mock---------
+			<dependency>
+		    <groupId>org.powermock</groupId>
+		    <artifactId>powermock-module-junit4</artifactId>
+		    <version>1.7.4</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.powermock</groupId>
+		    <artifactId>powermock-api-mockito</artifactId>
+		    <version>1.7.4</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		-------
+		@RunWith(PowerMockRunner.class)
+		@PrepareForTest(JWTUtil.class)
+
+			PowerMockito.mockStatic(JWTUtil.class);
+			PowerMockito.when(JWTUtil.loadCertificateFromCertificateFactory(Mockito.anyString()))
+		      .thenReturn(certificate);
+			
+---------------------	----------------------
+--------------OLD Jacoco pox.xml---------------
+
+[WARNING] Tests run: 12, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.008 s - in ae.gov.sdg.paperless.platform.util.JsonUtilTest
+[INFO] Running ae.gov.sdg.paperless.platform.util.StringUtilTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in ae.gov.sdg.paperless.platform.util.StringUtilTest
+[INFO]
+[INFO] Results:
+[INFO]
+[WARNING] Tests run: 54, Failures: 0, Errors: 0, Skipped: 5
+[INFO]
+[INFO]
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ paperless-platform ---
+[INFO] Building jar: D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\target\paperless-platform-0.0.1-SNAPSHOT-.jar
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.2:report (jacoco-site) @ paperless-platform ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO]
+[INFO] --- maven-failsafe-plugin:2.22.2:integration-test (default) @ paperless-platform ---
+[INFO]
+[INFO] --- maven-checkstyle-plugin:3.0.0:check (default) @ paperless-platform ---
+[INFO] Starting audit...
+[WARN] D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\src\main\java\ae\gov\sdg\paperless\platform\cache\model\CacheJsonHashCollectionRequest.java:21:82: '+' should be on a new line. [OperatorWrap]
+[WARN] D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\src\main\java\ae\gov\sdg\paperless\platform\cache\model\CacheJsonHashCollectionRequest.java:22:14: Line contains a tab character. [FileTabCharacter]
+
+[WARN] D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\src\main\java\ae\gov\sdg\paperless\platform\util\StringUtil.java:11:5: Missing a Javadoc comment. [JavadocMethod]
+Audit done.
+[INFO]
+[INFO] >>> maven-pmd-plugin:3.13.0:check (default) > :pmd @ paperless-platform >>>
+[INFO]
+[INFO] --- maven-pmd-plugin:3.13.0:pmd (pmd) @ paperless-platform ---
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[INFO]
+[INFO] <<< maven-pmd-plugin:3.13.0:check (default) < :pmd @ paperless-platform <<<
+[INFO]
+[INFO]
+[INFO] --- maven-pmd-plugin:3.13.0:check (default) @ paperless-platform ---
+[INFO] PMD version: 6.21.0
+[INFO] You have 96 PMD violations. For more details see: D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\target\pmd.xml
+[INFO]
+[INFO] --- maven-failsafe-plugin:2.22.2:verify (default) @ paperless-platform ---
+[INFO]
+[INFO] --- jacoco-maven-plugin:0.8.2:check (jacoco-check) @ paperless-platform ---
+[INFO] Skipping JaCoCo execution due to missing execution data file:D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\target\jacoco.exec
+[INFO]
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ paperless-platform ---
+[INFO] Installing D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\target\paperless-platform-0.0.1-SNAPSHOT-.jar to C:\Users\C_Farkalit.Usman\.m2\repository\ae\gov\sdg\paperless-platform\0.0.1-SNAPSHOT\paperless-platform-0.0.1-SNAPSHOT.jar
+[INFO] Installing D:\Farkalit\projects\dev\sdgworkspace\paperless-platform\pom.xml to C:\Users\C_Farkalit.Usman\.m2\repository\ae\gov\sdg\paperless-platform\0.0.1-SNAPSHOT\paperless-platform-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:39 min
+[INFO] Finished at: 2020-05-28T09:24:35+04:00
+[INFO] ------------------------------------------------------------------------
+
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>
+
+------------------
+
+RedisJsonCacheService
+	@Override
+	public JSONObject[] fetchAllFromQueue(final String key) throws IOException, URISyntaxException {
+		LOGGER.info("Start fetchAllFromQueue for key:{}",key);
+		final RequestEntity<Void> requestEntity = RequestEntity
+				.get(URI.create(baseCacheUrl+"/queue/fetchall?key=".concat(key)))
+				.accept(MediaType.ALL).headers(RestBasicAuthService.authHeaders(basicAuth)).build();
+		final String response = restTemplate.invoke(requestEntity, String.class);
+		final CacheJsonListResponse dataResponse = JsonUtil.fromJson(response, CacheJsonListResponse.class);
+		if (dataResponse != null && dataResponse.isSuccess()) {
+			LOGGER.info("End fetchAllFromQueue for key:{} successful",key);
+			//return dataResponse.getData();
+			JSONObject temp = new JSONObject(objectMapper.writeValueAsString(dataResponse.getData()));
+			JSONObject obj[] = new JSONObject[dataResponse.getData().length];
+			obj[0] = temp;
+			return obj;
+			
+		}
+		
+-------------------------------------------------------------------
+public class RestBasicAuthService implements IRestService<BasicAuth> {
+
+	private static <T> RequestEntity<T> getRequestEntityWithBasicAuth(final RequestEntity<T> request, final BasicAuth authDetails) {
+		HttpHeaders headers = request.getHeaders();
+		HttpHeaders abc = HttpHeaders.writableHttpHeaders(headers);
+		abc.setBasicAuth(getBasicAuth(authDetails.getUserName(), authDetails.getPassword()));
+		RequestEntity<T> test = new RequestEntity<>(request.getBody(), abc,
+				request.getMethod(), request.getUrl(), request.getType());
+		return test;
+	}
+	
+}
+java.lang.UnsupportedOperationException
+	at org.springframework.http.ReadOnlyHttpHeaders.set(ReadOnlyHttpHeaders.java:106)
+	at org.springframework.http.HttpHeaders.setBasicAuth(HttpHeaders.java:791)
+	at ae.gov.sdg.paperless.platform.common.service.generic.RestBasicAuthService.getRequestEntityWithBasicAuth(RestBasicAuthService.java:92)
+	at ae.gov.sdg.paperless.platform.common.service.generic.RestBasicAuthService.invoke(RestBasicAuthService.java:87)
+	

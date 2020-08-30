@@ -1,0 +1,11 @@
+Xebia Help:
+-------------------------
+Emp Id: XIC90
+Email: fusman@xebia.com
+Email URL: https://www.office.com/apps?ui=en-US&rs=IN&auth=2
+
+Zoho Attentendance: https://people.zoho.com/xebiacom/zp#attendance/regularization/myapprovals
+https://accounts.zoho.com/signin?servicename=zohopeople&signupurl=https://www.zoho.com/people/signup.html
+
+For Work from Home:
+ZOHO people -> Leave Tracker -> Apply Leave -> Leave Type- Work from Home .

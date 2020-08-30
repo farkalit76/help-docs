@@ -1,0 +1,478 @@
+User: C_Farkalit.Usman
+Email:C_Farkalit.Usman@smartdubai.ae
+Domain:DUBAIGOV
+IP Add.: 10.100.134.218 (dynamically chnages)
+Domain Name:
+
+Innovations UAE: ID: 51045_Th*@*
+fark.usm76@gmail.com/Th*001/009
+
+To change Window Password Login to:
+====================================
+idm.dubai.gov.ae
+------------------------------------
+
+OneDrive Location
+==========================================
+C:\Users\C_Farkalit.Usman\OneDrive - SmartDubai
+URL: https://onedrive.com
+https://cloudapps.smartdubai.ae/
+
+User: C_Farkalit.Usman
+Pass: Same@...
+
+windows Help
+----------------------------------------------------------------
+Step 1 : Find Process id in windows using command prompt
+CMD>netstat  -ano  |  findstr  <Port Number>
+
+Step 2 : Kill the process using command prompt
+taskkill  /F  /PID  <Process Id>
+
+=================================================================
+JWT Token Example--------------------------------------------------------
+=================================================================
+https://ids.qa.dubai.gov.ae/oauth2/token
+Body: form-urlencoded
+grant_type:dubainowauth
+dnusername:shahid1311@gmail.com
+dnpwd:Test@123
+scope:openid
+{
+    "scope": "openid",
+    "token_type": "bearer",
+    "expires_in": 1800,
+    "refresh_token": "ec43883c9b40c28ebbb729718d730fd",
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhdXRoX3RpbWUiOjE1OTQyMDcwMTM0MjcsImV4cCI6MTU5NDIwODgxMzQzMCwicmVzcG9uc2VDb2RlIjoiNSIsInN1YiI6Im1wdTpzaGFoaWQxMzExQGdtYWlsLmNvbTo1OnNoYWhpZDEzMTFAZ21haWwuY29tOm51bGw6bnVsbCIsImF6cCI6IldibjhsYXJHamxzRnhHeFB6a3gzVm1CQmpJWWEiLCJtcHVpZCI6InNoYWhpZDEzMTFAZ21haWwuY29tIiwiYXRfaGFzaCI6IjExSkg5THllRTBDcVhvXzFWU1NUd0EiLCJhdWQiOlsiV2JuOGxhckdqbHNGeEd4UHpreDNWbUJCaklZYSJdLCJpc3MiOiJodHRwczpcL1wvaWRzLnFhLmR1YmFpLmdvdi5hZVwvb2F1dGgyXC90b2tlbiIsImlhdCI6MTU5NDIwNzAxMzQzMH0.XolzwXBpvL3WrVgNYsmAJZOdo2tK8Lu3POrrT6SWvIM_b5nINZ6fBfNJ7DOT2DX4ygm0-hYlK5dRAim2mpqUW6IWO72K4J8MjS6YXBJqVi-z6pJY5xE4sJKjP9LHDS-U7YxcwYtj_H5OL0hkkaJIEd5QBWCmmvG9E3e1knpBz4w",
+    "access_token": "f0a4b8c34beb689e6d7e66982e89611"
+}
+
+https://ids.qa.dubai.gov.ae/oauth2/token?grant_type=client_credentials&scope=openid
+{
+    "scope": "openid",
+    "token_type": "bearer",
+    "expires_in": 304,
+    "id_token": "eyJhbGciOiJSUzI1NiJ9.eyJhdXRoX3RpbWUiOjE1OTQyMDYwMzM5NDAsImV4cCI6MTU5NDIwOTAyOTIwMSwic3ViIjoiYWRtaW4iLCJhenAiOiJXYm44bGFyR2psc0Z4R3hQemt4M1ZtQkJqSVlhIiwiYXRfaGFzaCI6InBxZVRPYnJqbzd1dHdrTjFsbFBwZ2ciLCJhdWQiOlsiV2JuOGxhckdqbHNGeEd4UHpreDNWbUJCaklZYSJdLCJpc3MiOiJodHRwczpcL1wvaWRzLnFhLmR1YmFpLmdvdi5hZVwvb2F1dGgyXC90b2tlbiIsImlhdCI6MTU5NDIwNzIyOTIwMX0.CLKtwjVMgY5Vxe3X2ghWDwIpxAUvZPijllEiXeZM9EOsIWK-ITGQmEyJJx4ZJdJ2o3U_9HNw1rrOerMiq8HY9ofkm4gWkiAPw1h04gTzXSj12RoLF-MVgwOf--I7J1wcKv66lxvmGyyUUoJBRXtRHD2wPCfzzXNTUVhdnbip3vk",
+    "access_token": "2a60ef6dcc8c971393f95663ffc9187d"
+}
+=====================================================================
+
+SDG Tribe divided into Squads: Zeina Kaissi
+-------------------------------------------
+1. Services (Purple Squad): Hend AlN.
+2. Core Team(Green Squad): Dunia+Faizan
+3. Design(---- Squad): Bassam
+4. Adoption(Blue Squad): Mustufa/Latifa
+5. PMO Maintain (Across the tribe): Omar Almajali
+
+-------------------------------------------
+Some Important Contacts
+-------------------------------------------
+For QA: Aman Garg, Satyendra Mani
+For Contents: Serian AlSalous (sister)
+For GSB: Sujay Ukil and Renjith Premachan
+For Databsse: Ibrahim Itani 
+For Component team: Khawar Habib & Nidhi A. Joshi
+for Front end: Shahid Tamboli & Faizan Ali bhai
+For Network Team: Harris Iqbal & Zafar Siddiqui
+For Payment Gateway: Saddam Hussain
+
+Test Payment Card: 4111-1111-1111-1111
+CVC : 123
+
+
+
+SonarQube
+===============================================
+URL: http://10.50.22.14:52523
+User: C_Farkalit.Usman/dubai@2020
+
+Local SonarQube 7.2.x
+URL: http://localhost:9010
+User: admin/admin
+
+
+
+Relavant URLs 
+======================================================
+Bitbucket:  https://smartscm.dsg.gov.ae/projects/PPS [dubainow journey]
+Bitbucket:  https://smartscm.dsg.gov.ae/projects/GSB/repos/ei-dev/browse [GSB WSO2]
+
+Confluence: https://smartspace.dsg.gov.ae/display/DPP/GSB+Integration+Technical+Documentation [WSO2 GSB design document(DPP-Dubai Paperless Project)]
+			DPP: https://smartspace.dsg.gov.ae/display/DPP/GSB+RTA-Seasonal+Parking
+			DHA: https://smartspace.dsg.gov.ae/display/DPP/GSB+DHA++Medical+Records-+Appointment+API+Technical+Documentation
+			MRHE : https://smartspace.dsg.gov.ae/pages/viewpage.action?spaceKey=DPP&title=To+Whom+it+may+concern
+			
+Confluence: https://smartspace.dsg.gov.ae/display/DPP/Purple+CX [For dubai police design and Zeplin Link for Purple Squad]
+
+JIRA Ticks: https://smartlead.dsg.gov.ae/secure/Dashboard.jspa
+			https://smartlead.dsg.gov.ae/browse/DCS-45?filter=-1  (Click on My Open Issues)
+			https://smartlead.dsg.gov.ae/secure/RapidBoard.jspa?rapidView=485&projectKey=DCS
+=======================================================
+Change the Message in Arabic Font (Internationalization - i18n):
+Contact to Serian AlSalous
+--------------------------------------------------------
+Select that file and right click, open properties
+Select resouce and other other drop down: UTF-8
+Apply & Apply and Close
+---------------------------------------------------------
+SOAP UI Access: Open with mstsc
+--------------------------------------------------------
+	SOAP UI server IP : 10.100.101.18 
+	User: dgdev\c_farkalit.usman+PWD:P@ssw0rd123!
+
+========================================================
+WSO2 Enterprise Integrator(EI) Local Environment:
+-------------------------------------------------------
+Start Server:
+D:\Farkalit\Softwares\wso2ei-6.5.0-m6\bin>integrator.bat
+--Login Carbon: https://192.168.1.100:9443/carbon/ [to deploy the CAR files]
+Credentials: User: admin/admin
+
+D:\Farkalit\Softwares\wso2ei-6.5.0-m6\bin>business-process.bat
+--Login Carbon:https://192.168.1.100:9445/carbon/   [To deploy the BAR files]
+--BPMNProcess: https://192.168.1.100:9445/bpmn-explorer [To handle the BPMN Process]
+
+======================================================
+WSO2 Developer Studio Ver. 6.5.0 With Eclipse Kepler-Ver-3.7.1
+Start: D:\Farkalit\Softwares\WSO2DeveloperStudio\DeveloperStudio.exe
+-------------------------------------------------------
+WSO2 Integration Studio ver. 7.0.2 With Eclipse ver-3.7.1
+Start:D:\Farkalit\Softwares\WSO2IntegrationStudio\IntegrationStudio.exe
+
+
+=======================================================
+WSO2 EI DEV Environment: For API Gateway--ESB
+=======================================================
+Dev server Internal IP: 10.50.115.11, 
+					IP2: 10.50.115.12
+WSO2 Carbon Admin : https://10.50.115.11:9443/carbon/admin/login.jsp  (Working for carbon)User: c_farkalit/EXcjEB4u
+					https://10.50.115.12:9443/carbon/admin/login.jsp  			
+WSO2 SSh Login to view Logs: 10.50.115.11, 10.50.115.12 ( With User ID: c_farklu Password: C0m@nd@20201234)
+GSB Dev server External IP: 185.78.245.245 (Deployed on Cloud)
+=========================================================
+
+Unix tail commands : <WSO2_HOME>/repository/conf/log4j.properties file.
+Log location on Linux:    $ cd /eserv/apps/logs/wso2ei/
+[c_farklu@agsdap01 wso2ei]$ tail -f  wso2-esb-api.log
+[c_farklu@agsdap01 wso2ei]$ telnet qagate.dubailand.gov.ae 443
+[c_farklu@agsdap01 wso2ei]$ traceroute qagate.dubailand.gov.ae
+---------------------------------------------------------
+[c_farklu@agsdap01 wso2ei]$ tail -n 100  wso2-esb-api.log
+[c_farklu@agsdap01 wso2ei]$ tail -f  wso2-esb-api.log [Get new lines from a file continuously]
+[c_farklu@agsdap01 wso2ei]$ tail -n 100 wso2carbon.log | more [display log line by line]
+[c_farklu@agsdap01 wso2ei]$ grep "bouncecheque" *.log  [search in all log files]
+[c_farklu@agsdap01 logs]$ grep -c  "BounceCheque" *.log [count the result found in files]
+	http_access_management_console_2020-03-29.log:31
+	http_access_management_console_2020-03-30.log:57
+	patches.log:0
+	wso2carbon.log:0
+
+[c_farklu@agsdap01 wso2ei]$ ls -lstr [list all file with time+date and size in reverse order]
+    4 -rw-r--r--. 1 wso2user wso2       342 Mar 30 13:32 audit.log
+   680 -rw-r--r--. 1 wso2user wso2    693841 Mar 30 13:39 wso2-esb-api.log
+    88 -rw-r--r--. 1 wso2user wso2     86437 Mar 30 13:39 wso2-ei-errors.log
+   488 -rw-r--r--. 1 wso2user wso2    492274 Mar 30 13:39 wso2-ei-service.log
+ 19040 -rw-r--r--. 1 wso2user wso2  19493981 Mar 30 13:39 wso2carbon.log
+
+-------------------------------------------------------------------------------
+
+Help:Security:https://wso2.com/library/webinars/2019/11/api-security-in-a-cloud-native-era/
+
+--------------------------------------------
+C:\Windows\System32\drivers\etc\hosts file (to add host name)
+---------------------------------------------
+
+
+pom.xml implementation
+------------------------------------
+close docker plugin n add devtools for dev mode
+		<!-- for runtime auto deploy -->
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+Springboot Authentication:
+=====================================================================
+1. OAuth2.0
+2. JWT Authentication
+	https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+	
+	
+	
+	
+MYSQL noinstall (zip file) Start first time
+===========================================
+1. RUN --echo %WINDIR%
+2. Then in this window folder create my.ini or my.cnf file
+3. Enter your MySQl exatracted dir as:
+[mysqld]
+# set basedir to your installation path
+basedir=E:/mysql
+# set datadir to the location of your data directory
+datadir=E:/mydata/data
+4. Start as #D:\Farkalit\Softwares\mysql-8.0.21-winx64\bin>mysqld --console
+5. It will generate log as:
+
+InnoDB: The first specified datafile c:\ibdata\ibdata1 did not exist:
+InnoDB: a new database to be created!
+InnoDB: Setting file c:\ibdata\ibdata1 size to 209715200
+InnoDB: Database physically writes the file full: wait...
+InnoDB: Log file c:\iblogs\ib_logfile0 did not exist: new to be created
+InnoDB: Setting log file c:\iblogs\ib_logfile0 size to 31457280
+InnoDB: Log file c:\iblogs\ib_logfile1 did not exist: new to be created
+InnoDB: Setting log file c:\iblogs\ib_logfile1 size to 31457280
+InnoDB: Log file c:\iblogs\ib_logfile2 did not exist: new to be created
+InnoDB: Setting log file c:\iblogs\ib_logfile2 size to 31457280
+InnoDB: Doublewrite buffer not found: creating new
+InnoDB: Doublewrite buffer created
+InnoDB: creating foreign key constraint system tables
+InnoDB: foreign key constraint system tables created
+011024 10:58:25  InnoDB: Started
+
+
+		
+------------------------------------
+Git Command Help
+------------------------------------
+git clone https://smartscm.dsg.gov.ae/scm/pps/paperless-dubainow-main.git
+git clone --branch feature/cleaning-journey https://smartscm.dsg.gov.ae/scm/pps/paperless-dubainow-main.git
+
+Display All branches: $git branch -a
+git checkout feature/testcases (Checkout form feature/tescases branch only)
+
+git branch -d featue/clean-journey (delete branch locally)
+git push origin --delete feature/clean-journey (delete branch from remotely)
+
+To view all the branches commit dates:(It is basically shows from refs/heads branch or refs/remotes/) 
+git for-each-ref --sort=committerdate refs/remotes/ --format='%(committerdate:short)-%(refname:short)'
+git for-each-ref --sort=committerdate refs/heads/ --format='%(committerdate:short)-%(refname:short)'
+git for-each-ref --sort=committerdate refs/heads/ --format='%(color:red)%(committerdate:short)-%(color:blue)%(refname:short)'
+git for-each-ref --sort=authordate refs/remotes --format='%(authordate:relative)%09%(refname:short)' 
+git for-each-ref --sort=authordate refs/remotes --format='%(authordate:short)%09%(refname:short)'
+
+------------------------------------------
+BITBUCKET Conflict resolver
+------------------------------------------
+Issue: PR raised for--> feature/common-refactor to featue/JWT
+It can be seen in Bitbucket browser --> Click Pull requests--> See your PR as CONFLICT (in yellow color)
+-------------Resolve-----------------------
+1. Goto Github Desktop --> Select the feature/common-refactor branch to view in Eclipse.
+2. Clcik the current branch drop down, it shows list branches inside it,Select the last one--> Choose a branch to merge into feature/common-refactor
+3. Select feature/JWT branch (where we are going to merge our branch)
+4. Clcik the Merge <feature/JWT into feature/common-refactor> button. (Note if file is a deleted one then merge over github by <resolve> button.)
+5. Now go to eclipse and find the classes which need to merge. Resolve it. Then push the code from github desktop.
+6. Goto Bitbucket browser, refresh it. You will see it is resolved now.
+------------------------------------------
+Git-BITBUCKET code merging
+------------------------------------------
+git status
+
+git fetch --prune
+
+git checkout develop
+
+git pull origin develop
+
+git checkout bugfix/dcs-89
+
+git merge develop
+
+------------------------------------------
+BITBUCKET Create Pull Request
+------------------------------------------
+1. Open BITBUCKET URL:
+2. Click on Create a Pull Request
+3. Select Source branch: feature/usman-branch
+4. Select Destination branch: feature/JWT
+5. Click Continue button. Select Reviewer name and click submit. [Optional write some comment.]
+------------------------------------
+WiFi User Password
+------------------------------------
+SmartDubaiDevice:h@ppiness
+-------------------------------------
+Three Types of Users: Test DEV Env.
+-------------------------------------
+DubaiID:  dcomm --User-->Hend/Hend@123
+DubaiNow: User--> shahid1311@gmail.com/Test@123[an mPay User--->Generally with email ]
+UAEPass:  User--> UAE PASS - 971550000556 (Swetabh), 971508792289 (Aman)
+Note: Now use MPay (Becasue DubaiID user deprecated...)
+		dxb.stripathi@gmail.com@Saty@123 (Has TC No. and valid vehicle)-- DubaiID
+		c_mohamed.kashif@smartdubai.ae/Pass@123
+
+Test QA Env. User: dakota@\S\S\S (QA) ||
+
+Maven commands
+-------------------------------------
+$mvn clean install
+$mvn clean package
+$mvn spring-boot:run
+$java -jar target/app-0.0.1-SNAPSHOT.jar
+
+-------------------------------------
+Dubainow DEV Testing Application
+-------------------------------------
+How to get Mobile Test Application
+--------------------------------------
+1.	Go to Google Play Store
+2.	Download App Tester (this need to permission from Web team like Faizan, you get a mail request).
+3.	Open App Tester, Select DubaiNow 168++ releases
+4.	Then install the DubaiNow (Install 7.1-qa (122) ) for Dev version.
+5.	Login with Hend@Hend@123
+
+
+-------------------------------------
+Dubainow QA Testing Application
+-------------------------------------
+App setting for Testing: All Services-->General-->Social Services-->
+First Line: http://10.100.134.57:8080/ For QA
+First Line: http://198.168.1.105:8080/ For DEV
+Second Line: paperless-dubainow2/api/entity/hospital
+thirst Line: Hospital
+Fourth Line: hospital-template-screen (first page not required), uncheck the below check box of "Send sequence name"
+-------------------------------
+APPIAN_DATABASE DEV
+-------------------------------
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    hikari: "connection-timeout:30000 maximum-pool-size:50"
+    password: xx0dev
+    url: "jdbc:oracle:thin:@10.22.45.12:1257:EDEV"Refactored code for dubai all police has been done
+    username: Appian_Business
+------------------------------------
+VPN Setting: Citrix SSO from Mobile
+Proxy Setting:
+Printer:
+Firewall White Listed Apps:
+------------------------------------
+
+-------------------------------------------------------
+To Start Main App: paperless-dubainow-main
+--------------------------------------------------------
+-----From Feature/JWT Maven Build---------------------
+Take the latest code from bitbucket-->featue/JWT branch
+NOTE::::: Close the docker properties in pom file (and other plugin if needed)
+D:\Farkalit\projects\dev\sdgworkspace\paperless-dubainow-main\confsrv>mvn clean package -Dmaven.test.skip=true
+D:\Farkalit\projects\dev\sdgworkspace\paperless-dubainow-main\journey-services>mvn clean package -Dmaven.test.skip=true
+D:\Farkalit\projects\dev\sdgworkspace\paperless-dubainow-main>mvn clean install -Dmaven.test.skip=true
+
+D:\Farkalit\projects\dev\sdgworkspace\paperless-utils>mvn clean install -Dmaven.test.skip=true
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>mvn clean install -Dmaven.test.skip=true
+D:\Farkalit\projects\dev\sdgworkspace\paperless-common-services>mvn clean install -Dmaven.test.skip=true
+
+
+Now Start: paperless-common-services (from develop branch)
+----------------------------------------------------------
+**************For Redis Cache Services *******************
+----------------------------------------------------------
+Take the latest code from bitbucket-->develop branch
+First close docker links from all the pom.xml
+D:\Farkalit\projects\dev\sdgworkspace\paperless-common-services>mvn clean install -Dmaven.test.skip=true
+Change application.yml:     packages: 
+      Line no. 10 = ae.gov.sdg.paperless.services.cache.provider.inmemory
+Change the URL in paperless-dubainow-main\confsrv\journeyservice-dev.yml file 
+	as: http://localhost:9090/paperless-common-services/
+	URL: http://192.168.1.110:9090/paperless-common-services/
+
+Redis Test on Swagger: http://localhost:9090/paperless-common-services/swagger-ui.html
+	User: sdguser
+	Password: password
+	
+Take: paperless-platform (from master branch)
+----------------------------------------------------------------------
+****For all the common utilities including Redis Cache utils *********
+----------------------------------------------------------------------
+Take the latest code from bitbucket-->master branch
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>mvn clean install -Dmaven.test.skip=true
+D:\Farkalit\projects\dev\sdgworkspace\paperless-platform>mvn clean install
+
+=============================================================================
+For Oracle Database Issue: Please replace /journey-service/application-dev.yml
+To SQL Server with the below config details.
+=============================================================================
+server:
+  port: 8080
+  servlet:
+    contextPath: /paperless-dubainow2
+spring:
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    hikari: "connection-timeout:30000 maximum-pool-size:50"
+    password: h@ck-m3-n0w
+    url: "jdbc:sqlserver://10.50.12.29:1433;databaseName=Appian_Business"
+    username: dxbn_micro
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.SQLServerDialect
+    properties:
+      hibernate:
+        default_schema:Appian_Business
+        generate_statistics:true
+    show-sql: true
+logging:
+  level:
+    root: info
+image:
+  defaultPlaceHolder: "https://dubainowqa.dubai.ae/PublishingImages/JSON/User%20Profile%20Default%20Image.png"
+
+=====================================================================
+Scaled Horizontally:
+------------------------------------------------
+Horizontal scaling means that you scale by adding more machines into your pool of resources 
+whereas Vertical scaling means that you scale by adding more power (CPU, RAM) to an existing machine.
+
+Difference between distributed application and enterprise application:--
+A banking application is typically an enterprise application catering as it does to multiple requirements- Balance Enquiry, Funds Transfer, Bill Payment, Statement Generation. 
+On the other hand an application that is specifically used to track attendance at various locations of a company, is a distributed one.
+
+Java Unit Testing: JUnit, Mockito, Jacoco, SonarQube, SonarLint with eclipse etc.
+Logging:  Log4j, Log4j2, XML etc
+Agile Methodology(Development methodology) with Scrum: Scrum is an agile process that allow us to focus on short deliveries.
+DevOps, Tools for CI/CD(Cont. Iteration & Cont. Development): Maven, Jenkins, Git, Github, SourceTree etc
+
+=====================================================================
+Software Required
+---------------------------------------------------------------------
+7-Zip- To open zip file
+Java8+JRE
+Docker -  To building the application in the local system for development purpose.
+Spring Tool Suite - IDE for the backend code development purpose
+Eclipse - IDE for the backend code development purpose
+Node JS-  Server Environment for local system for development purpose.
+Git - To connect with code repository for development purpose.
+Github Desktop - To check changed files for development purpose.
+Maven - Build tool for backend code for development purpose.
+Postman - API testing tool for development purpose.
+Atom - file editor for development purpose.
+SQL Developer- To connect to DB for development purpose.
+MongoDB - NOSQL DB for POC and for development purpose.
+Redis-  Cache management for the DubaiNow application for POC and for development purpose.
+Beyond compare (for file comparing)
+++++++
+Apache Kafka+Zookeeper -- Used to stream data into data lakes, applications, and real-time stream analytics systems
+WSO2+Enterprise Integrator
+H2 Database-- for WSO2 integration
+SoapUI--For WebService testing
+Jabber - done
+Cisco- WebEx Meeting - done
+Skype for Business -
+VPN-
+--Citrix Gateway
+--Gateway.dubai.gov.ae
+--Citrix SSO on Mobile for Token
+
+
+---------Maven Error-------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.mojo:findbugs-maven-plugin:3.0.2:findbugs (findbugs) on project paperless: 
+Unable to parse configuration of mojo org.codehaus.mojo:findbugs-maven-plugin:3.0.2:findbugs for parameter pluginArtifacts: 
+Cannot assign configuration entry 'pluginArtifacts' with value '${plugin.artifacts}' of type java.util.Collections.UnmodifiableRandomAccessList 
+to property of type java.util.ArrayList -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginConfigurationException
+
+

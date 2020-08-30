@@ -1,0 +1,505 @@
+
+Paperless API Test Suit Cases
+------------------------------------
+1. Rest Assured API
+2. TestNG Testing Framework
+3. Java and Maven
+
+
+https://learning.postman.com/docs/writing-scripts/script-references/test-examples/
+https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman/
+https://www.chaijs.com/api/bdd/
+
+
+NewMan Command
+--D:\temp\postmans_coll>newman run DACTestSuite_collection.json -e DubaiNowQA_environment.json
+
+
+
+
+${project.build.directory}
+
+${project.basedir}
+
+mvn clean install -PDevTests -Denv=QA
+
+D:\Farkalit\projects\dev\sdgworkspace\paperless-restassured>mvn clean install -PProdTests -Denv=PROD
+D:\Farkalit\projects\dev\sdgworkspace\usman-restassured-tests\target>java -jar usman-restassured-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar prod
+
+
+spring.profiles.active=dev,hsqldb
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<!-- <properties>
+						<property>
+							<name>testnames</name>
+							<value>DubaiAirport,DubaiHealthAuth</value>
+						</property>
+					</properties> -->
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+	
+	
+	<profiles>
+   <profile>
+      <id>test</id>
+      <build>
+         <plugins>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-antrun-plugin</artifactId>
+               <version>1.1</version>
+               <executions>
+                  <execution>
+                     <phase>test</phase>
+                     <goals>
+                        <goal>run</goal>
+                     </goals>
+                     <configuration>
+                     <tasks>
+                        <echo>Using app.test.properties</echo>
+                        <copy file="src/main/resources/app.test.properties" 
+                        	tofile="${project.build.outputDirectory}/env.properties"/>
+                     </tasks>
+                     </configuration>
+                  </execution>
+               </executions>
+            </plugin>
+         </plugins>
+      </build>
+   </profile>
+</profiles>
+
+
+
+
+Help References:
+	https://medium.com/aeturnuminc/getting-started-with-rest-assured-a087d806b4ec
+
+
+https://services.dubaiairports.ae/DubaiNowIntg/api/v1
+
+[7/9 11:59 AM] Sujay Ukil
+    
+use this wsdl https://services.dubaiairports.ae/dsgfiswebservice/flightservices.asmx?wsdl
+
+SOAPAction:
+URI: 	https://services.dubaiairports.ae/dsgfiswebservice/GetFlightStatusByNumber
+		https://services.dubaiairports.ae/dsgfiswebservice/GetFlightStatusByRoute
+		https://services.dubaiairports.ae/dsgfiswebservice/GetAirlineCodes
+		https://services.dubaiairports.ae/dsgfiswebservice/GetCurrentArrivals
+		https://services.dubaiairports.ae/dsgfiswebservice/GetAirlineCodes
+
+<flig:Username>dsgfis</flig:Username>
+<flig:Password>dsgfis@2014</flig:Password>
+
+
+Befits of Rest Assured
+----------------------
+1. REST Assured reduces the need for writing same section of code many times,
+2. It supports for BDD (Behavior-Driven Development) by using test notation, Given, When and Then.
+4. It is based on REST API but also test SOAP Web Services.
+3. Since REST Assured is a Java library, integrating it into a continuous integration / continuous delivery setup is an easy when combined with a testing framework such as JUnit or TestNG
+4. It provides speacial features  as:
+	a. Measuring Response Time
+	b. Validate Response Time,
+	c. XML Response Verification,
+	d. JSON Response Verification, etc
+	e. It can print all the request and response as log.
+
+
+
+1.	Finding the best way to proceed it with (Java/Spring boot, WSO2 Automation Testing Framework, Rest Assured API with TestNG). Digging each one takes time.
+2.	Explored “Rest Assure API”. Nice API and easy to implement it with Java and maven)
+3.	TestNG Framework which is included with Rest Assured (also explored)
+4.	For DCA-Dubai Airport – Test Cases completed for both sides WSO2 as well as Client Services Endpoints.  
+
+
+
+**************************************************************
+
+D:\Farkalit\projects\dev\sdgworkspace\usman-restassured-tests\target>java -jar usman-restassured-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar prod
+args:1
+args:prod
+profileName:application-prod.properties
+
+ ***Properties file and env:application-prod.properties***
+
+Root Location:/D:/Farkalit/projects/dev/sdgworkspace/usman-restassured-tests/target/usman-restassured-tests-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+Cedric 36
+Anne 37
+Request method: POST
+Request URI:    https://services.dubaiairports.ae/dsgfiswebservice/flightservices.asmx
+Proxy:                  <none>
+Request params: <none>
+Query params:   <none>
+Form params:    <none>
+Path params:    <none>
+Headers:                SOAPAction=http://tempuri.org/DCAWebServices/FlightServices/GetAirlineCodes
+
+
+
+---------------------------------------------------
+1. Compile and run the Test Suite
+---------------------------------------------------
+1. D:\Farkalit\projects\dev\sdgworkspace\usman-restassured-tests>mvn clean install -PDevTests -Denv=DEV  [ or -PProdTests -Denv=PROD]
+2. Or From IDE -- Select the project, right click-->Run As-->Maven install.
+3. Then goto target folder. Add all the *.properties files here.
+4. Run: D:\Farkalit\projects\dev\sdgworkspace\usman-restassured-tests\target>java -jar usman-restassured-jar-with-dependencies.jar dev
+
+----------------------------------------------------
+2. Compile and run the Quartz Job Scheduler
+----------------------------------------------------
+1. Enter the TestSuite Jar in the JobFile:D:\\Farkalit\\projects\\dev\\sdgworkspace\\usman-restassured-tests\\target\\usman-restassured-tests-jar-with-dependencies.jar
+2. Compile it D:\Farkalit\projects\dev\sdgworkspace\paperless-restassured-task>mvn clean install
+3. Or From IDE -- Select the project, right click-->Run As-->Maven install.
+4. Then goto target folder.
+5. Run: D:\Farkalit\projects\dev\sdgworkspace\paperless-restassured-task\target>java -jar paperless-restassured-task-jar-with-dependencies.jar prod
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Paperless API Test Suit Cases
+-----------------------------------
+Objective: 
+	Create a test suite for GSB/WSO2 APIs and the call of client base APIs endpoints.
+Features: 
+	a. Able to change the environment among dev|qa|prod
+	b. Able to run as well as ignore the individual test case.
+	
+Process:
+1. Get Response for each GSB/WSO2 API endpoint
+2. Get Response for each Client APIs endpoint
+3. Save these results into database for each URL
+
+4. Match both the responses as:
+	a. For the HttpStatus
+	b. For the Body 
+	c. For the body details 
+
+5. Result:Example with headers
+---------------------------
+Status|Env|journey|Endpoint	|WSO2-url|WSO2-request|WSO2-response|WSO2-status|api-url|api-reuest|api-respone|api-status|datetime
+--------------------------------------------------------------------------------------------------------------------------------
+Pass  |QA |DAC|getcustomer|http://abc/|{"abc":1}|{"xyz":"x"}|OK|http://xyz/|{"abc":1}|{"xyz":"x"}|OK|12-10-2020 10:10:30.123
+Pass  |QA |DAC|savecustomer|http://abc/|{"abc":1}|{"xyz":"x"}|OK|http://xyz/|{"abc":1}|{"xyz":"x"}|OK|12-10-2020 10:10:30.123
+Pass  |QA |DAC|updatecustomer|http://abc/|{"abc":1}|{"xyz":"x"}|OK|http://xyz/|{"abc":1}|{"xyz":"x"}|OK|12-10-2020 10:10:30.123
+Fail  |QA |DAC|deletecustomer|http://abc/|{"abc":1}|{"xyz":"x"}|OK|http://xyz/|{"abc":1}|{"xyz":"x"}|BadReqest|12-10-2020 10:10:30.123
+Fail  |QA |DAC|getcustomer|http://abc/|{"abc":1}|{"xyz":"x"}|OK|http://xyz/|{"abc":1}|{"xyz":null}|OK|12-10-2020 10:10:30.123
+
+
+6. Table
+
+
+
+Development
+----------------------------------------------------------------------------------
+application-dev.yml|application-qa.yml|application-prod.yml
+-----------------------------------------------------------------------------------
+keyname=Test_run_skip|JourneyName|Endpoint|WSO2-url|API-url
+-----------------------------------------------------------------------------------
+api.dp.getcustomer.url: true|dp|getcustomer|http://abc/d1|http://xyz/z1
+api.dp.savecustomer.url: true|dp|savecustomer|http://abc/d1|http://xyz/z1
+api.dp.updatecustomer.url: false|dp|updatecustomer|http://abc/d1|http://xyz/z1
+
+
+
+
+--------------------------------
+ae.gov.sdg.paperless.testsuite
+
+<groupId>ae.gov.sdg</groupId>
+<artifactId>paperless-test-suite</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+	
+
+<parent>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-parent</artifactId>
+	<version>2.2.4.RELEASE</version>
+	<relativePath />
+</parent>
+
+----------------------pom.xml------------------------------
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ae.gov.sdg</groupId>
+	<artifactId>paperless-restassured</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Paperless restassured</name>
+	<description>RestAssured for all Paperless M/S</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<rest-assured.version>4.2.0</rest-assured.version>
+		<testng.version>7.1.0</testng.version>
+		<surefire.version>3.0.0-M5</surefire.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${rest-assured.version}</version>
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-path</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>io.rest-assured</groupId> <artifactId>json-schema-validator</artifactId> 
+			<version>${rest-assured.version}</version> </dependency> -->
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>xml-path</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>spring-mock-mvc</artifactId>
+			<version>${rest-assured.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured-common</artifactId>
+			<version>${rest-assured.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<!-- <scope>test</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>java-hamcrest</artifactId>
+			<version>2.0.0.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<!-- <dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.13.3</version>
+		</dependency>  -->
+
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>DevTests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${surefire.version}</version>
+						<configuration>
+							<systemPropertyVariables>
+								<env>${env}</env>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>3.2.0</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<index>true</index>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<mainClass>ae.gov.sdg.paperless.api.RunAllApiTest</mainClass>
+								</manifest>
+								<manifestEntries>
+									<mode>development</mode>
+									<url>${project.url}</url>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+				</plugins>
+				<finalName>paperless-restassured</finalName>
+			</build>
+		</profile>
+		<profile>
+			<id>ProdTests</id>
+			<build>
+			
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${surefire.version}</version>
+						<configuration>
+							<systemPropertyVariables>
+								<env>${env}</env>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src\main\resources\testng-prod.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>3.2.0</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+							<archive>
+								<index>true</index>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<mainClass>ae.gov.sdg.paperless.api.RunAllApiTest</mainClass>
+								</manifest>
+								<manifestEntries>
+									<mode>development</mode>
+									<url>${project.url}</url>
+								</manifestEntries>
+							</archive>
+						</configuration>
+					</plugin>
+				</plugins>
+				<finalName>paperless-restassured</finalName>
+			</build>
+		</profile>
+	</profiles>
+	
+<!-- 	<profiles>
+		<profile>
+			<id>DevTests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${surefire.version}</version>
+						<configuration>
+							<systemPropertyVariables>
+								<env>${env}</env>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>ProdTests</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${surefire.version}</version>
+						<configuration>
+							<systemPropertyVariables>
+								<env>${env}</env>
+							</systemPropertyVariables>
+							<suiteXmlFiles>
+								<suiteXmlFile>src\main\resources\testng-prod.xml</suiteXmlFile>
+							</suiteXmlFiles>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles> -->
+	
+   <!-- 	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src\main\resources\testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build> -->
+
+
+</project>

@@ -1,0 +1,6 @@
+Springboot Authentication:
+1. OAuth2.0
+2. JWT Authentication
+
+https://dzone.com/articles/spring-boot-security-json-web-tokenjwt-hello-world
+

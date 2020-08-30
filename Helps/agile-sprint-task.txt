@@ -1,0 +1,129 @@
+Tuesday: 16 june 2020
+	-Working on review comments issue for SonarQube
+	-90% of critical and Major 7 Minor issues fixed
+	-Confluence doc created for SonarQube fixes.
+
+Tuesday: 16 june 2020
+	-Working on minor issue of SonarQube
+	-90% of critical and Major issues fixed
+
+Tuesday: 9 june 2020
+	-Start working on SonarQube issues
+	
+
+Wednesday: 20 May 2020
+	dubainow-paperless test cases....
+	
+
+Tuesday: 19 May 2020
+	$ git clone https://smartscm.dsg.gov.ae/scm/pps/paperless-platform.git
+	
+
+Sunday: 17 May 2020
+	DCS 83: Lost And Found : Error while saving claim in database (Fixed)
+	DCS 45: Seasonal Parking | Missing parametes (Need User which has vehicles registered with it.)
+
+Wednesday: 14 May 2020
+	DCS-14: Amaf Donations: Error in getting Awqaf Dubai Donations (It is concurrent issue, Sumeet is looking.)
+	DCS 45: Seasonal Parking | Missing parametes (Need User which has vehicles registered with it.)
+	DCS 83: Lost And Found : Error while saving claim in database
+		Mobile: paperless-dubainow2/api/entity/airport/lostandfound
+		+LostAndFound
+
+Monday, 5 May 2020
+	1. DCS-66: Patient Service: Visit reason is coming as a sequence
+		URL: https://api.dev.dubai.gov.ae/secure/dha/mr/appointment/5.0.0/patientappointments/getPastAppointments?hcNumber=910003244
+		Mobile: paperless-dubainow2/api/entity/dha/patientservice
+		+PatientService
+		
+Monday, 4 May 2020
+	1. DCS-64: Patient Service: Future appointment speciality is coming as null
+		URL: https://api.qa.dubai.gov.ae/secure/dha/mr/appointment/5.0.0/patientappointments/getFutureAppointments?hcNumber=920000655
+		Mobile: paperless-dubainow2/api/entity/dha/patientservice
+		+PatientService
+		
+Monday, 3 May 2020
+	1. DCS 45: Seasonal Parking | Missing parametes
+		URL: https://api.qa.dubai.gov.ae/secure/rta/seasonalcards/5.0.0/cards?trafficFileNumber=13615790
+		Mobile: paperless-dubainow2/api/entity/rta/seasonalparking
+		+SeasonalParking
+
+Monday, 27 April 2020
+	1. DCS-14: Amaf Donations: Error in getting Awqaf Dubai Donations
+	2. AmafDonationServiceImpl: getDonationProgramList();
+	   Mobile: paperless-dubainow2/api/journey
+		+AmafDonation
+		+Uncheck - Send Sequence name
+		+click Save button
+	3. Soln: Open App-->Donation--> Awqaf Dubai-->3 results (click any one link)-->Payment-->Done
+		URL:https://api.qa.dubai.gov.ae/secure/amaf/5.0.0/donation/programs/donationProgramsList
+		POST URL: http://192.168.1.101:8080/paperless-dubainow2/api/journey
+		{
+			"journey" : "AmafDonation",
+			"lang": "en"
+		}
+		
+	4. DCS-27: MHRE | To whomsover it may concern - GSB issue
+	5. MbrheController
+		POST URL: http://192.168.1.101:8080/paperless-dubainow2/api/entity/mbrhe/certificate
+		{
+			"journey" : "LoanCertificate",
+			"lang": "en"
+		}
+		POST URL: http://192.168.1.101:8080/paperless-dubainow2/api/entity/mbrhe/loansummary
+		{
+			"journey" : "LoanSummary",
+			"lang": "en"
+		}
+	
+		URL: https://api.dev.dubai.gov.ae/secure/mrhe/loancert/5.0.0/financial/status?emiratesId=784198630859498&local=en
+		
+		LoanSummaryService --157  if (response == null || response.getPayload().size() == 0) {
+	
+	
+	
+Sunday, 26 April 2020
+	1. DCS-17:We are all police | error while submission
+	2. Soln: Open App-->Police--> We Are All Police-->OK, I understand-->Attach Image and Submit-->Done
+		POST URL: http://192.168.1.101:8080/paperless-dubainow2/api/entity/dp/allpolice
+		{
+			"journey" : "AllPolice",
+			"lang": "en"
+		}
+		URL: https://api.dubai.gov.ae/secure/dubaipolice/weareallpolice/5.0.0/records
+	
+Tuesday, 31-Mar-2020,
+	1. MOHRE Web Services
+	2. Get WSO2 QA environemnt details
+
+
+Wednesday, 25 Mar 2020
+	1. Get Access right on GSB Dev server
+	2. Get access right on Soap UI app to test the web Service.
+	3. Get open connectivity from DP to our GSB Dev server.
+	4. Raise request to network team to whitelist the DP IP address.
+
+Tuesday, 24 Mar 2020
+	1. WSO2 application build and deploy
+	2. Looking the confuence for app details
+	3. Checking the WSO2 Dev server SSH login, Need carbon login.
+	
+	Need: Need whitelist for Dubaipolice endpoints or WSDL.
+	
+Sunday, 22-Mar-2002
+	1. AssertUtil remove
+	2. tracing, security, exception, -- moved to entity
+
+	<property name="LOG_PATH"
+		value="/Users/dsg268/workspace/dubainow-main"/>
+		value="/temp/logs/smartdubai"/>
+
+
+-Dspring.profiles.active=dev -Xmx4g -Dlogging.level.ae.gov.sdg.paperless.services=TRACE 
+-Dlogging.config=http://localhost:8888/paperless-conf/journeyservice/qa/master/logback.xml
+
+-Dspring.profiles.active=dev -Dlogging.config=http://localhost:8888/paperless-conf/journeyservice/dev/master/logback.xml
+
+	
+Thursday, 19-Mar-2002
+	1. Move all util classes to entity common util package.

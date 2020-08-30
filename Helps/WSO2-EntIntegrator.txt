@@ -1,0 +1,81 @@
+WSO2 Enterprise Integrator
+=========================================
+Tutorial: https://docs.wso2.com/display/EI600/Quick+Start+Guide
+=========================================
+-->Start WSO2 Enterprise Integrator
+-->CMD_PROMPT--D:\Farkalit\Softwares\wso2ei-6.5.0-m6\bin>integrator.bat --run 
+==========================================
+Eclipse developer studio: Open it from D:\Farkalit\Softwares\WSO2DeveloperStudio
+Select default workspace: C:\Users\C_Farkalit.Usman\WSO2DeveloperStudio\workspace
+
+1. Create Maven Multi Module (MMM) Project
+2. Create ESB Config Project inside MMM.
+3. Create Composite Applicaiton project (CAR) inside MMM.
+4. Create Endpoints inside ESB (src/main/synapse-config/endpoints) [one to many]
+5. Create REST API inside ESB (src/main/synapse-config/api)[one to many]
+6. Create CAR File to deploy: Right click on CAR project -->Export Composite Application Project-->Select Export Destination-->
+	-->Select Artifact to include inside car (Select ESB which includes all API and Endpoints ) -->Click Finish
+7. Deploy the CAR Project (including endpoints and API) in the WSO2 Remote Server
+-->Learn how to add LOG and use get-property("PARAM_ID"); http://10.100.134.106:8080/first/1.0.0/message
+-->Learn how to use propery with its DATA TYPE
+-->Learn how to get URI resource param using get-property("uri.var.userId"):http://10.100.134.106:8280/resource/user/id/usman.farkalit
+-->learn how to get URI Qyuery param user get-property("query.param.age");http://10.100.134.106:8280/query/user?age=40&location=dubai
+-->Learn how to use Sequences, Fault sequences etc.
+-->Learn Send or Call with Respond.
+-->Learn JSON expression by json-eval($.hospital)
+-->Learn Switch case/Routing
+-->Learn Service Chaning --Call one after another services.
+-->Learn PayloadFactory to generate the required Input data which collected from diffrent result .
+-->Learn store and formating
+-->Learn DataService for RDBMS with SOAP and REST API.
+-->Learn Task Scheduler 
+
+=======================================
+HELP Video link
+----------------------------------------
+Error Handling:https://www.youtube.com/watch?v=LHsiVxrEMmI
+
+==========================================
+For Generic Sequences Use: SDG_Generic MMM
+======================================
+	<sequence key="GSB_REST_Generic_In_Seq"/>
+	<sequence key="SPP_AuthJWTVerifer_Seq"/>
+	<sequence key="GSB_REST_Generic_Out_Seq"/>
+	
+	<sequence key="GenericRestFaultSequence"/>
+
+=====================================
+How to Call existing REST API
+=====================================
+1. Create ESB Endpoints.
+	<endpoint name="FirstEP" xmlns="http://ws.apache.org/ns/synapse">
+		<address uri="http://10.100.134.106:8080/first/1.0.0"/>
+	</endpoint>
+2. Create ESB API and give the endpoints reference inside it.
+	<api context="/endpoint" name="EndpointAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" protocol="http" url-mapping="/message">
+        <inSequence>
+            <log description="Log for Message API" level="full"/>
+            <call>
+                <endpoint key="FirstEP"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+	</api>
+3. Goto postman and git the URL: http://10.100.134.106:8280/endpoint/message
+POST: http://10.100.134.106:8280/endpoint/employeeReq
+Input Request:
+{
+  "empId": 110
+}
+======================================
+What do you need from API Management Systems?
+======================================
+1. Creating and publishing APIs
+2. API security and rate limiting(How many users)
+3. Platform for consuming, discovering and searching APIs
+4. API governance and life cycle management 
+5. API anlytics, specialization and evolution.

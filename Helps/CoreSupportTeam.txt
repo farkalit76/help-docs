@@ -1,0 +1,28 @@
+-->Need Remedy Tool (ticket detail)
+-->BI Tool(Business Inteligence)
+-->Firebase
+-->Splunk
+-->Android mobile with du and Etisalat Sims 
+-->iPhone mobile with du and Etisalat Sims (Optional)
+-->Install DubaiNow app from app store, and register yourself over there.
+
+
+POST applogs/_doc/10
+{
+   "date":"2020-04-01 17:35:56", 
+   "thread":"1",
+   "level":"INFO", 
+   "logger":"com.usman.spboot.SpbootApplication", 
+   "message":"Running with Spring Boot v2.1.2.RELEASE, Spring v5.1.4.RELEASE"
+}
+
+GET applogs/_search
+
+source
+{
+	"date":2020-04-09T15:52:47,198,
+	"thread":"[restartedMain]",
+	"level":"INFO ",
+	"logger":"com.usman.spboot.SpbootApplication",
+	"message":"Starting SpbootApplication on SDO0026L2 with PID 20668 (D:\Farkalit\projects\dev\sdgworkspace\usman-spboot\target\classes started by c_farkalit.usman in D:\Farkalit\projects\dev\sdgworkspace\usman-spboot)"
+}

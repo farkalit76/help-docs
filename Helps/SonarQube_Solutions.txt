@@ -1,0 +1,171 @@
+SonarQube and SonarLint
+==========================================================================
+setup and Start SonarQube Server
+URL: http://10.100.134.116:9010
+My Domain Name: http://sdo0026l2.dubaigov.local:9010/
+Login User: admin/admin
+Generate Token: usman: 85945a2cecdd9dcf4d73e3a868350553ec5f869c
+-----------------------------------------------------------------
+Production Server
+-----------------------------------------------------------------
+URL: http://10.50.22.14:52523
+User: C_Farkalit.Usman/dubai@2020
+
+
+Optional Update Properties: D:\Farkalit\Softwares\sonarqube-7.2.1\conf\sonar.properties
+Start SonarQube Server From: D:\Farkalit\Softwares\sonarqube-7.2.1\bin\windows-x86-64 --> Click File: StartSonar.bat
+
+----------------------------------------------------------------------------
+mvn sonar:sonar -Dsonar.host.url=http://sdo0026l2.dubaigov.local:9010 -Dsonar.login=85945a2cecdd9dcf4d73e3a868350553ec5f869c
+mvn clean verify sonar:sonar -Dsonar.host.url=http://sdo0026l2.dubaigov.local:9010 -Dsonar.login=85945a2cecdd9dcf4d73e3a868350553ec5f869c
+
+OR
+mvn sonar:sonar -Dsonar.host.url=http://10.50.22.14:52523 -Dsonar.login=C_Farkalit.Usman -Dsonar.password=dubai@2020
+mvn sonar:sonar -Dsonar.host.url=http://10.50.22.14:52523 -Dsonar.login=102371331d6f8c228f4bae3f5a5d814c0cf91d66
+For paperless-dubainow-main--->sonar.login.token:97b775b1d8a478164ba043b48f3e8df2c4745e81
+paperless-dubainow-main--->mvn clean verify sonar:sonar -Dsonar.host.url=http://10.50.22.14:52523 -Dsonar.login=97b775b1d8a478164ba043b48f3e8df2c4745e81
+
+
+  
+
+SonarQube Report: D:\Farkalit\projects\dev\sdgworkspace\usman-test-util>mvn sonar:sonar -Dsonar.host.url=http://10.100.134.116:9010
+$mvn clean verify sonar:sonar -Pcoverage  -e -Denvironment=uat2 -DxmlFile=<>  -Dsonar.jacoco.reportPaths=/tmp/jacoco-it.exe  
+-Dsonar.projectName=<>  -Dsonar.host.url=<> -Dsonar.login=<> -Dsonar.password=<>
+
+SonarQube Report URL:
+http://192.168.1.110:9010/dashboard?id=ae.gov.sdg%3Apaperless-platform
+http://192.168.1.110:9010/dashboard?id=com.usman.util.test%3Ausman-test-util
+
+To exclude from SonarQube Coverage percentage:
+<sonar.exclusions>**/Name*.java</sonar.exclusions>
+<sonar.coverage.exclusions>test/**/*</sonar.coverage.exclusions>
+
+
+Confluence URL: https://smartspace.dsg.gov.ae/pages/viewpage.action?pageId=84869592
+
+-----------------------------------------------------------
+********************1. Critical Issues*********************
+-----------------------------------------------------------
+Prob: Refactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.   DubaiNowScreenUtil.java
+Soln: Create a sub method inside the method to reduce its connivity.
+
+Prob: Remove usage of generic wildcard type.	RestExceptionHandler.java
+Soln: public ResponseEntity<?> genericExceptionHandler(final GenericException ex, final WebRequest request) throws IOException {
+	Changed to --> public ResponseEntity<Object> genericExceptionHandler(final GenericException ex, final WebRequest request) throws IOException {
+	OR Changed to -->public ResponseEntity<ApiError> genericExceptionHandler //As the real type
+   
+
+Prob: Return an empty collection instead of null.	MPayStubServiceImpl.java
+Soln: return null;
+	Changed to --> 
+		return new ArrayList<>();//return to its return type.
+		
+Prob: Null is returned but a "Boolean" is expected.	MPayStubServiceImpl.java
+Soln: return null;
+	Changed to--> 
+		return false; //as expected
+
+
+Prob:Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.	LogTracingFilter.java
+Soln:public void destroy() {
+    } 
+	Changed to -->
+	public void destroy() {
+		//give some comments
+    }
+	
+
+-----------------------------------------------------------
+********************2. Major Issues************************
+-----------------------------------------------------------
+Prob: if (bindPathPpty != null) =  Remove this expression which always evaluates to "true"	DockerSecretProcessor.java
+Fixed-->if (import org.apache.commons.lang3.StringUtils.isNoneBlank(bindPathPpty)) =   
+
+Prob: Replace the synchronized class "StringBuffer" by an unsynchronized one such as "StringBuilder".	DockerSecretProcessor.java
+Soln: StringBuffer Changed to --> StringBuilder
+
+Prob:Define and throw a dedicated exception instead of using a generic one.	JsonUtil.java
+Soln: RuntimeException --> Changed  to: DNRuntimeException extends to RuntimeException
+
+Prob: Add a private constructor to hide the implicit public one. DateUtil.java
+Soln: Add a constructor--> private DateUtil(){}
+
+Prob: Format specifiers should be used instead of string concatenation.	TraceAspectLogger.java
+Soln: logger.error("Exception while invoking method - " + method);
+	Changed to -->logger.error("Exception while invoking method - {}", method);
+
+Prob:Either remove or fill this block of code.	RestTemplateResponseErrorHandler.java
+Soln: Put an  error message asinside the catch block --> log.error("Error serverity - {}",e.getMessage());
+
+Prob: This block of commented-out lines of code should be removed.	FreeMarkerConfig.java
+Soln:  //bean.setTemplateLoaderPath("/screens/");
+	Changed to -->
+		/**
+         * bean.setTemplateLoaderPath("/screens/");
+         */
+
+Prob: Merge this if statement with the enclosing one. PaperlessResourceLoader.java L65
+Soln:if (journeyName != null) {
+        	if(journeyScreenResources.get(journeyName.name().toLowerCase())!=null) {
+				//do something
+			}
+		}
+	Changed to--> 
+		if (journeyName != null && isJourneyName(journeyName)) {
+        	object = journeyScreenResources.get(journeyName.name().toLowerCase()).get(screenName);
+        }
+		private static boolean isJourneyName(IJourneyType journeyName) {
+			  return (journeyScreenResources.get(journeyName.name().toLowerCase())!=null);
+		}
+		
+		
+		
+-----------------------------------------------------------
+********************3. Minor Issues************************
+-----------------------------------------------------------
+
+
+
+
+Prob: Rename this generic name to match the regular expression '^[A-Z][0-9]?$'.	JsonUtil.javaL106
+Soln: public static <T, RES> RES fromJson(final T json, final Class<RES> responseType) 
+	-->Changed to: public static <T, R> R fromJson(final T json, final Class<R> responseType) {
+	
+Prob:Rename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.	DataType.java
+Soln: Car  Changed to--> CAR and so on (Excludes)
+
+Prob: Remove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.	DubaiNowScreenUtil.java
+Soln: IOException Changed to --> DNExcption extends to Exception
+	
+Prob: Remove the declaration of thrown exception 'org.springframework.web.client.HttpStatusCodeException' which is a runtime exception.    MPayService.java
+Soln: Remove RuntimeException from throws clause only. But do not remove it from try catch block Exception.
+	
+	
+
+Notes:
+-------------------------------------------------
+APPLICATION_JSON_UTF8 in baseController complained deprecated -->Need to use APPLICATION_JSON
+BasicAuthorizationInterceptor is deprecated in RestBasicAuthService --> Need to use BasicAuthenticationInterceptor
+Remove the declaration of thrown exception 'org.springframework.web.client.HttpStatusCodeException' which is a runtime exception.    MPayService.java
+Remove the declaration of thrown exception 'org.springframework.web.client.HttpStatusCodeException' which is a runtime exception.    MPayStubServiceImpl.java
+
+
+
+excludes: ae.gov.sdg.paperless.platform.common.model.components.types
+
+
+Few Checked Exception: Which is compile time
+	SQLException
+	IOException
+	FileNotFoundException
+	ClassNotFoundException
+	InvocationTargetException
+	
+
+Few Unchecked Exception: It is not showing at compile time but when you run the code.
+	NullPointerException
+	ArrayIndexOutOfBoundsException
+	ArithmeticException
+	NumberFormatException
+	IllegalArgumentException
+

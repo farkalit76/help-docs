@@ -1,0 +1,119 @@
+Sonar qube Fixes: For paperless-dubainow-main
+-------------------------------------------------
+12-August-2020
+Usman->68-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/rta/service&id=ae.gov.sdg%3Apaperless&resolved=false#
+---->>>These are enums--->>>Usman->52-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/journey/types&id=ae.gov.sdg%3Apaperless&resolved=false#
+13-August-2020
+Usman 36-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/journey/model&id=ae.gov.sdg%3Apaperless&resolved=false#
+Usman 29-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/gdrfa/service/reports&id=ae.gov.sdg%3Apaperless&resolved=false#
+16-aug-2020
+Usman 25-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/dashboard/driving/service&id=ae.gov.sdg%3Apaperless&resolved=false#
+Usman 24-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/airport/service&id=ae.gov.sdg%3Apaperless&resolved=false#
+17-aug-2020
+Usman 22-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/dewa/service&id=ae.gov.sdg%3Apaperless&resolved=false#
+Usman 20-http://10.100.134.116:9010/project/issues?directories=src/main/java/ae/gov/sdg/paperless/services/entity/dld/service/titledeed&id=ae.gov.sdg%3Apaperless&resolved=false#
+
+
+New Architecture Task
+=========================
+Swetabh
+2.> LoanCertificate("loancertificate"),
+3.> LoanSummary("loansummary"), (DELETE)
+4.> PublicProsecution("publicprosecution"),
+6.> AmafDonation("amaf"),
+ 
+
+Usman:
+1.> Pharmacy("pharmacy")
+5.> AllPolice("allpolice"),
+
+====================================
+1.> SeasonalParking("seasonalparking"),
+2.> PatientService("patientservice"),
+3.> LostAndFound("lostandfound"),
+4.> LoanSummary("loansummary"), (DELETE)
+5.> LoanCertificate("loancertificate"),
+LATER
+AmafDonation("amaf"),
+
+USMAN
+6.> AllPolice("allpolice"),
+7.> PublicProsecution("publicprosecution"),
+8.> Pharmacy("pharmacy"),
+9.> RERARENTAL("rera")
+LATER:
+SocialService("ss"),
+
+File need to change to work
+----------------------------------------------
+confsrv-->journeyservice-dev.yml
+
+dubai.now.cache.ctxt.url: "http://10.100.135.177:9090/paperless-common-services/"
+dubai.now.cache.ctxt.url: "http://192.168.1.110:9090/paperless-common-services/"
+
+journey-service--pom.xml
+<!-- for runtime auto deploy -->
+         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+		
+		
+Task To do for New Architecture
+------------------------------------------------------------
+
+1. Create route-allpolice.json with the service path.
+2. Create i18-allpolice.json from i18n-resources.json
+3. Create allpolice-screens-path.json from screens-path.json
+
+4. Create YourNewServices.java as you mentioned in route-allpolice.json (reference from screen-sequence-allpolice.json)
+5. Create all YourServices with extending BaseMSJourneyService (Move the code here from existing service).Add TraceLog in each service.
+6. Create or append your controller with extending BaseController (Update the existing methods as required)
+
+
+-----Pharmacy------
+
+			}else {
+				String latitude =  "25.276987";
+				String longitude = "55.296249";
+				Map<String, Object> params = new HashMap<String, Object>();
+				params.put("latitude", latitude);
+				params.put("longitude", longitude);
+				request.setParams(params);
+				CompletableFuture<List<GeoResult>> googleApiPharmaciesList = getPharmaciesListFromGoogleAPI(request);
+				if (googleApiPharmaciesList != null) {
+					map.put("googleApiPharmaciesList",
+							filterDuplicateAndSortGoogleApiPharmacies(googleApiPharmaciesList.get()));
+				}
+				map.put("userlatitude", latitude);
+				map.put("userlongitude", longitude);
+			}
+
+
+24hr = 24 x 60 mins
+
+-------
+
+	@TraceLog
+	private List<Pharmacy> getPharmaciesList(Request request, String accessToken) throws CustomException, IOException {
+		List<Pharmacy> pharmaciesList = null;
+		JSONObject pharmacies = redisJsonCache.keyValueGet(CacheNameEnum.Pharmacy.getCode(), "pharmacies");
+		if( pharmacies == null ) {
+			pharmaciesList = getDubaiPoliceEntityPharmacyList(accessToken, pharmaciesList);
+			System.out.println("pharmaciesList:"+pharmaciesList);
+			pharmaciesList = calculateDistance(pharmaciesList, request);
+			String pharmaJsonStr = JsonUtil.toJson(pharmaciesList);
+			System.out.println("pharmaJsonStr:"+pharmaJsonStr);
+			//Map<String, Object> cacheData = new HashMap<>();
+            //cacheData.put("pharmacies", pharmaJsonStr);
+			JSONObject pharmaJsonObj = new JSONObject();
+			pharmaJsonObj.put("pharmaJsonObj", pharmaJsonStr);
+			redisJsonCache.keyValuePut(CacheNameEnum.Pharmacy.getCode(), "pharmacies", pharmaJsonObj, null);
+		}else {
+			//Set<String> keySet = pharmacies.keySet();
+			String fromJson = JsonUtil.fromJson(pharmacies, String.class);
+			System.out.println("pharmaList:"+pharmaList.size());
+		}
+		return pharmaciesList;
+	}

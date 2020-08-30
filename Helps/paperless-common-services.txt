@@ -1,0 +1,366 @@
+application.yml
+	  ae.gov.sdg.paperless.services.cache.provider.redis
+      ae.gov.sdg.paperless.services.cache.provider.inmemory
+	  
+	  
+	  /.classpath
+/.project
+/.settings/
+/bin/
+
+
+/.idea/
+/paperless-common-services.iml
+/target/
+
+.DS_Store
+
+JIRA #CORE-1236 Done
+JIRA #CORE-1078 Done
+
+
+CORE-1242	Add Headers in all MS requests	Story	BACKLOG	Unassigned	
+Actions
+CORE-1284	Enable Push Notification	Story	BACKLOG	Unassigned	
+Actions
+CORE-1285	Configure Alert on Microapp click	Story	BACKLOG	Unassigned	
+Actions
+CORE-1370	Update UAEPass message	Story	BACKLOG	Unassigned	
+Actions
+
+Create Unit test cases for Paperless common service
+
+Queries:
+1. InmemoryCacheServiceImpl --this is an empty class, what is the use of it?
+2. OtpController has all the private methods. So how it is called?
+
+
+-----Code Merge-----
+D:\Farkalit\projects\dev\sdgworkspace\paperless-common-services>git merge develop
+Merge made by the 'recursive' strategy.
+ Dockerfile                                         |   2 +-
+ Jenkinsfile                                        |  41 ++-
+ pom.xml                                            |   4 +-
+ .../authentication/SpringSecurityConfig.java       |  11 +-
+ .../common/conf/AuthenticationProperties.java      |   6 +-
+ .../cache/common/util/CommonConstants.java         |   1 +
+ .../services/cache/common/util/CommonUtil.java     |  19 ++
+ .../provider/inmemory/GeneralCacheAttributes.java  |  73 +++++
+ .../inmemory/InmemoryCacheJsonServiceImpl.java     |  14 +
+ .../inmemory/InmemoryCacheServiceImpl.java         | 311 +++++++++++++++++----
+ .../inmemory/InmemoryCacheStringServiceImpl.java   |  13 +
+ .../provider/redis/RedisCacheServiceImpl.java      |  59 +++-
+ .../provider/redis/RedisJsonCacheServiceImpl.java  |   2 -
+ .../services/common/DockerSecretProcessor.java     |  58 ++--
+ .../common/exceptions/ResourceLoaderException.java |  55 ++++
+ .../common/tracing/LogIdPatternLayoutEncoder.java  |  20 ++
+ .../services/common/tracing/RequestConverter.java  |  15 +
+ .../services/common/tracing/TraceAspectLogger.java |  10 -
+ .../sdg/paperless/services/otp/OtpController.java  |   4 +-
+ .../gov/sdg/paperless/services/otp/OtpService.java |   2 +-
+ src/main/resources/application-prod.yml            |  14 +-
+ src/main/resources/application-qa.yml              |   8 +-
+ src/main/resources/application.yml                 |  15 +-
+ src/main/resources/logback-spring.xml              |  96 +++----
+ 24 files changed, 661 insertions(+), 192 deletions(-)
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/cache/common/util/CommonUtil.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/cache/provider/inmemory/GeneralCacheAttributes.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/cache/provider/inmemory/InmemoryCacheJsonServiceImpl.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/cache/provider/inmemory/InmemoryCacheStringServiceImpl.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/common/exceptions/ResourceLoaderException.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/common/tracing/LogIdPatternLayoutEncoder.java
+ create mode 100644 src/main/java/ae/gov/sdg/paperless/services/common/tracing/RequestConverter.java
+ 
+ 
+ 
+ -----
+ 
+ ae.gov.sdg.paperless.services.cache.provider.redis.exceptions
+ 
+ ae.gov.sdg.paperless.services.cache.common.models
+ 
+ ae.gov.sdg.paperless.services.otp.exceptions
+ 
+ ae.gov.sdg.paperless.services.common.exceptions
+ 
+ 
+ 1593674776097
+ 1593675376097
+ 
+ 
+java.lang.NullPointerException
+	at ae.gov.sdg.paperless.services.cache.common.conf.CacheConfigurationManager.expiryTimeForCache(CacheConfigurationManager.java:18)
+	at ae.gov.sdg.paperless.services.cache.provider.redis.RedisCacheServiceImpl.add(RedisCacheServiceImpl.java:73)
+	at ae.gov.sdg.paperless.services.cache.provider.redis.RedisStringCacheServiceImplTest.testAdd(RedisStringCacheServiceImplTest.java:78)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	
+-------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath />
+	</parent>
+	<groupId>ae.gov.sdg</groupId>
+	<artifactId>paperless-common-services</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Paperless Common Services</name>
+	<description>Microservice with Common Services for Paperless</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+		<springfox-swagger.version>2.8.0</springfox-swagger.version>
+		<checkstyle.file.path>checkstyle.xml</checkstyle.file.path>
+		<checkstyle.latest.version>8.11</checkstyle.latest.version>
+		<jmockit.version>1.41</jmockit.version>
+		<jacoco.version>0.8.5</jacoco.version>
+		<spring.core.version>5.0.8.RELEASE</spring.core.version>
+		<start-class>ae.gov.sdg.paperless.services.main.Boot</start-class>
+		<docker.image.name>paperless-common-services</docker.image.name>
+		<docker.image.tag>latest</docker.image.tag>
+		<!-- Sonar Qube properties -->
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+		<sonar.language>java</sonar.language>
+		<sonar.exclusions>test/**/*, **/ae/gov/sdg/paperless/services/main/**/*</sonar.exclusions>
+		
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-bean-validators</artifactId>
+			<version>${springfox-swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>ae.gov.sdg</groupId>
+			<artifactId>paperless-util</artifactId>
+			<version>0.0.8-Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20180813</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jmockit</groupId>
+			<artifactId>jmockit</artifactId>
+			<version>${jmockit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.sonarsource.java/sonar-jacoco-listeners -->
+		<dependency>
+			<groupId>org.sonarsource.java</groupId>
+			<artifactId>sonar-jacoco-listeners</artifactId>
+			<version>3.8</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>sdg-artifactory-releases</name>
+			<url>http://devops.sdg.gov.ae:52524/artifactory/SDG-releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>sdg-artifactory-snapshots</name>
+			<url>http://devops.sdg.gov.ae:52524/artifactory/SDG-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+		
+		<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<configuration>
+					<excludes>
+						<exclude>**/ae/gov/sdg/paperless/services/main/**</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<forkCount>3</forkCount>
+					<reuseForks>true</reuseForks>
+					<argLine>@{argLine} -Xmx1024m -XX:MaxPermSize=256m</argLine>
+				</configuration>
+			</plugin>
+			
+			 
+		<!-- 	<plugin>
+				https://github.com/spotify/dockerfile-maven/issues/10
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.0</version>
+				<executions>
+					<execution>
+						<id>default</id>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>tag-version</id>
+						<goals>
+							<goal>tag</goal>
+						</goals>
+						<configuration>
+							suppress UnresolvedMavenProperty
+							<tag>${git.commit.id.abbrev}</tag>
+						</configuration>
+					</execution>
+					<execution>
+						<id>push-latest</id>
+						<phase>none</phase>
+						<goals>
+							<goal>push</goal>
+						</goals>
+						<configuration>
+							<tag>latest</tag>
+						</configuration>
+					</execution>
+					<execution>
+						<id>push-version</id>
+						<phase>none</phase>
+						<goals>
+							<goal>push</goal>
+						</goals>
+						<configuration>
+							suppress UnresolvedMavenProperty
+							<tag>${git.commit.id.abbrev}</tag>
+						</configuration>
+					</execution>
+				</executions>
+				<configuration>
+					<repository>ddtr.dubai.gov.ae/sdg/${docker.image.name}</repository>
+					<tag>${git.commit.id.abbrev}</tag> ${docker.image.tag}
+					<pullNewerImage>false</pullNewerImage>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+				</configuration>
+			</plugin> -->
+		</plugins>
+	</build>
+
+</project>
+
+ 

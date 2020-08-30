@@ -1,0 +1,78 @@
+
+DP - Bounce Cheque
+Prototype on Confluence : https://smartspace.dsg.gov.ae/display/DPP/Purple+CX
+Docs are available on mail by Praful Singhal on 24 Mar 2020
+
+Confluence Design: https://smartspace.dsg.gov.ae/display/DPP/Purple+CX
+Zeplin:https://sketch.cloud/s/5zYZp/a/ZwzYJZ/play
+
+Contact Person: Pavithra Kumar <P.ANANDA@dubaipolice.gov.ae>
+
+
+Bounced Cheque Services:
+1. 3.3	SAVEBOUNCEDCHEQUEREQUEST 
+2. 3.1	SAVEBOUNCEDCHEQUEDTLSREQUEST
+3. 3.2	SAVEBOUNCEDCHEQUEQUESTIONSREQUEST
+4. 
+
+==========================================
+Deployed to GSB DEV Server:https://10.50.115.11:9443/carbon
+==========================================
+1. URL: http://api.dev.dubai.gov.ae:8280/secure/dp/bouncecheque/1.0.0/person/appdetails
+2. URL: http://api.dev.dubai.gov.ae:8280/secure/dp/bouncecheque/1.0.0/chequedetails
+3. URL: http://api.dev.dubai.gov.ae:8280/secure/dp/bouncecheque/1.0.0/questions
+4. URL: http://api.dev.dubai.gov.ae:8280/secure/dp/bouncecheque/1.0.0/company/appdetails
+
+
+==============================================
+ 
+  <resource methods="POST" uri-template="/payment">
+        <inSequence>
+            <sequence key="GSB_REST_Generic_In_Seq"/>
+            <sequence key="SPP_AuthJWTVerifer_Seq"/>
+            <property name="HTTP_METHOD" scope="axis2" type="STRING" value="POST"/>
+            <property action="remove" name="TRANSPORT_HEADERS" scope="axis2"/>
+            <header name="Content-Type" scope="transport" value="application/json"/>
+            <property name="DISABLE_CHUNKING" scope="axis2" type="STRING" value="true"/>
+            <call>
+                <endpoint key="SDG_DXBNW_SPP_DPP_FinePay_Endpoint_5.0.0"/>
+            </call>
+            <sequence key="GSB_REST_Generic_Out_Seq"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence>
+            <sequence key="GenericRestFaultSequence"/>
+        </faultSequence>
+    </resource>
+
+====================================================================
+Endpoints And WSDL
+=====================================================================
+https://esbstg.dubaipolice.gov.ae/services/BouncedChequeService
+https://esbtest.dubaipolice.gov.ae/services/BouncedChequeService
+https://esb.dubaipolice.gov.ae/services/BouncedChequeService
+
+https://ebusqa.dubaipolice.gov.ae/services/BounceChequeService
+========================================================================
+
+D:\Farkalit\projects\dev\wso2eicodebase>git clone https://smartscm.dsg.gov.ae/scm/gsb/ei-dev.git
+Cloning into 'ei-dev'...
+remote: Enumerating objects: 6880, done.
+remote: Counting objects: 100% (6880/6880), done.
+remote: Compressing objects: 100% (4448/4448), done.
+remote: Total 6880 (delta 3459), reused 3461 (delta 1700)
+Receiving objects: 100% (6880/6880), 2.59 MiB | 2.07 MiB/s, done.
+Resolving deltas: 100% (3459/3459), done.
+error: unable to create file RTA-SPP/RTA-SPP-CustomerProfileInquiry/RTA-SPP-CustomerProfileInquiry_REG/target/registry_resources/SPP_RTA_CustomerProfile_MultiArray_VehicleInfo_1.0.0/resources/SPP_RTA_CustomerProfile_MultiArray_VehicleInfo.xslt: Filename too long
+Updating files: 100% (3332/3332), done.
+fatal: unable to checkout working tree
+warning: Clone succeeded, but checkout failed.
+You can inspect what was checked out with 'git status'
+and retry with 'git restore --source=HEAD :/'
+
+
+
+
+  <sequence key="GSB_REST_Generic_In_Seq"/>
+			<sequence key="SPP_AuthJWTVerifer_Seq"/>
